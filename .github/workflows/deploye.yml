@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   web-deploy:
@@ -13,6 +14,24 @@ jobs:
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v4
+
+    - name: 🔐 Pre-flight Secrets Validation
+      env:
+        SERVER: ${{ secrets.FTP_SERVER }}
+        USERNAME: ${{ secrets.FTP_USERNAME }}
+        PASSWORD: ${{ secrets.FTP_PASSWORD }}
+      run: |
+        if [ -z "$SERVER" ] || [ -z "$USERNAME" ] || [ -z "$PASSWORD" ]; then
+          echo "::error::Missing FTP Deployment Secrets!"
+          [ -z "$SERVER" ] && echo "::error::Secret FTP_SERVER is missing. Please add it to GitHub Repository Secrets."
+          [ -z "$USERNAME" ] && echo "::error::Secret FTP_USERNAME is missing. Please add it to GitHub Repository Secrets."
+          [ -z "$PASSWORD" ] && echo "::error::Secret FTP_PASSWORD is missing. Please add it to GitHub Repository Secrets."
+          echo ""
+          echo "Please configure FTP_SERVER, FTP_USERNAME, and FTP_PASSWORD under:"
+          echo "Settings -> Secrets and variables -> Actions -> Repository secrets"
+          exit 1
+        fi
+        echo "All deployment secrets validated successfully."
       
     - name: 📂 Sync files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -21,3 +40,4 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: ./htdocs/
+

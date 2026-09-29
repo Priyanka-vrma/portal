@@ -1,0 +1,77 @@
+name: GitHub Actions Self-Test
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  self-test:
+    name: 🧪 Runner & Config Self-Test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🟢 Test 1 - Basic Runner Execution
+        run: |
+          echo "=========================================="
+          echo "🎉 GitHub Actions Runner is WORKING!"
+          echo "Host: $(uname -a)"
+          echo "Date: $(date -u)"
+          echo "Runner OS: $RUNNER_OS"
+          echo "=========================================="
+
+      - name: 🚚 Test 2 - Codebase Checkout
+        uses: actions/checkout@v4
+
+      - name: 🔍 Test 3 - Repository Integrity Check
+        run: |
+          echo "Checking essential files..."
+          test -f index.html && echo "✓ index.html found"
+          test -f play.html && echo "✓ play.html found"
+          test -f app.js && echo "✓ app.js found"
+          test -f style.css && echo "✓ style.css found"
+          test -f data/games.json && echo "✓ data/games.json found"
+          python3 -c "import json; json.load(open('data/games.json'))" && echo "✓ games.json is valid JSON"
+          echo "All core files verified successfully!"
+
+      - name: 🔐 Test 4 - FTP Secrets Status Diagnostic
+        env:
+          FTP_SERVER_VAL: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME_VAL: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD_VAL: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          echo "=========================================="
+          echo "Checking GitHub Secrets for FTP Deployment"
+          echo "=========================================="
+          MISSING=0
+
+          if [ -z "$FTP_SERVER_VAL" ]; then
+            echo "❌ FTP_SERVER is NOT SET (empty)"
+            MISSING=$((MISSING+1))
+          else
+            echo "✅ FTP_SERVER is set (Length: ${#FTP_SERVER_VAL} chars)"
+          fi
+
+          if [ -z "$FTP_USERNAME_VAL" ]; then
+            echo "❌ FTP_USERNAME is NOT SET (empty)"
+            MISSING=$((MISSING+1))
+          else
+            echo "✅ FTP_USERNAME is set (Length: ${#FTP_USERNAME_VAL} chars)"
+          fi
+
+          if [ -z "$FTP_PASSWORD_VAL" ]; then
+            echo "❌ FTP_PASSWORD is NOT SET (empty)"
+            MISSING=$((MISSING+1))
+          else
+            echo "✅ FTP_PASSWORD is set (Length: ${#FTP_PASSWORD_VAL} chars)"
+          fi
+
+          echo "=========================================="
+          if [ $MISSING -gt 0 ]; then
+            echo "⚠️ Notice: $MISSING secret(s) still need to be added to Repository Settings."
+            echo "👉 Go to: https://github.com/${{ github.repository }}/settings/secrets/actions"
+          else
+            echo "🎉 All FTP secrets are ready for deployment!"
+          fi
+          echo "GitHub Actions self-test completed successfully."
