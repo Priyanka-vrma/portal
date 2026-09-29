@@ -30,10 +30,11 @@ This storage is used **strictly and exclusively** for:
 
 ---
 
-## 3. Third-Party Services & External Links
+## 3. Zero Third-Party Services & Zero External URLs
 
-- **Fonts & Typography:** The portal loads open-source typography from Google Fonts (`fonts.googleapis.com`). No personal user records are collected by our portal through this service.
-- **No Third-Party Advertising:** The arcade is 100% ad-free and sponsor-tracker-free.
+- **100% Self-Contained:** The portal does not load any external third-party scripts, stylesheets, fonts, trackers, or CDNs. All assets and typography use local system fonts and local files.
+- **No Third-Party Advertising:** The arcade is 100% ad-free, tracker-free, and independent of any third-party infrastructure.
+
 
 ---
 

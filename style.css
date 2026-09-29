@@ -2,10 +2,8 @@
    THE HAUNTED ARCADE - Design Language & Style System
    Theme: Playful, Clever & Spooky "Haunted Arcade"
    Palette: Deep Midnight Blues, Glowing Ectoplasm Greens, Spectral Purples, Pumpkin Amber
-   Typography: Creepster (Spooky Retro Arcade) & Fredoka (Playful Rounded UI)
+   Typography: Self-contained system typography (Zero third-party network requests)
    ========================================================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Fredoka:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap');
 
 :root {
   /* Deep Midnight Blues & Crypt Stones */
@@ -45,10 +43,10 @@
   --text-muted: #94a3b8;
   --text-ghost: #8ca3c2;
 
-  /* Typography Families */
-  --font-spooky: 'Creepster', cursive;
-  --font-playful: 'Fredoka', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  /* Typography Families (Self-contained system fallbacks, zero 3rd party requests) */
+  --font-spooky: 'Creepster', 'Nosifer', 'Chiller', 'Impact', 'Cooper Black', fantasy, cursive, sans-serif;
+  --font-playful: 'Fredoka', 'Quicksand', 'Comfortaa', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Source Code Pro', Menlo, Monaco, Consolas, 'Courier New', monospace;
 
   /* Tombstone Carved Borders & Radii */
   --tombstone-radius: 44px 44px 18px 18px;
