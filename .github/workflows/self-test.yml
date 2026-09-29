@@ -29,6 +29,7 @@ jobs:
           echo "Checking essential files..."
           test -f index.html && echo "✓ index.html found"
           test -f play.html && echo "✓ play.html found"
+          test -f contact.html && echo "✓ contact.html found"
           test -f app.js && echo "✓ app.js found"
           test -f style.css && echo "✓ style.css found"
           test -f data/games.json && echo "✓ data/games.json found"

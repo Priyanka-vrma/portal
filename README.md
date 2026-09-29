@@ -101,6 +101,7 @@ npx http-server ghost-gaming-portal -p 8080
 ghost-gaming-portal/
 ├── index.html                  # Main Haunted Arcade portal homepage & catalog
 ├── play.html                   # Arcade cabinet game runner (iframe/canvas container)
+├── contact.html                # Cryptmaster contact & inquiry page (pv101298@gmail.com)
 ├── style.css                   # Haunted Arcade dark theme, tombstone styling & animations
 ├── app.js                      # Catalog logic, dynamic JSON loader, search & audio FX
 ├── play.js                     # Cabinet runner logic, metadata parser & control relays
@@ -160,7 +161,9 @@ ghost-gaming-portal/
 
 ---
 
-## 📜 License & Privacy
+## 📜 License, Privacy & Contact
 
 - **License**: Released under the open-source **MIT License** (Copyright © 2026 Priyanka). See [`LICENSE.txt`](LICENSE.txt) for full details.
 - **Privacy Policy**: 100% private, client-side only. We do not track, collect, or transmit any user data. See [`PRIVACY.md`](PRIVACY.md).
+- **Creator & Copyright**: Priyanka
+- **Contact**: Reach out via [`contact.html`](contact.html) or email directly to `pv101298@gmail.com`.

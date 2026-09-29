@@ -53,5 +53,8 @@ If we update our privacy practices or introduce new local storage features, any 
 
 If you have any questions, concerns, or inquiries regarding this Privacy Policy or The Haunted Arcade, please contact us directly:
 
-- **Email:** `r9896633156@gmail.com`
+- **Creator & Copyright Holder:** Priyanka
+- **Email:** `pv101298@gmail.com`
+- **Contact Page:** [`contact.html`](contact.html)
 - **Phone:** `9896633156`
+

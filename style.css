@@ -2065,3 +2065,368 @@ img, svg {
     padding: 0 12px;
   }
 }
+
+/* ==========================================================================
+   CONTACT CRYPTMASTER PAGE (contact.html)
+   ========================================================================== */
+.contact-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.contact-hero {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 50px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.contact-card {
+  background: var(--bg-card);
+  border: 2px solid rgba(168, 85, 247, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16px);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  border-color: rgba(0, 255, 136, 0.45);
+  box-shadow: 0 12px 36px rgba(0, 255, 136, 0.15);
+}
+
+.contact-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.contact-header-icon {
+  font-size: 1.8rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid var(--spectral-purple);
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 15px var(--spectral-glow);
+}
+
+.contact-header-title {
+  font-family: var(--font-spooky);
+  font-size: 1.6rem;
+  letter-spacing: 0.06em;
+  color: var(--text-white);
+  margin: 0;
+}
+
+.contact-header-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.creator-highlight-box {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(0, 255, 136, 0.08));
+  border: 1.5px solid rgba(0, 255, 136, 0.3);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.creator-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ecto-green);
+  background: rgba(0, 255, 136, 0.15);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 10px;
+}
+
+.creator-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.creator-copyright {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--spectral-lilac);
+}
+
+.email-feature-card {
+  background: rgba(10, 16, 28, 0.85);
+  border: 2px solid var(--ecto-green);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 0 20px var(--ecto-glow);
+  text-align: center;
+}
+
+.email-label {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.email-address-display {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ecto-green);
+  word-break: break-all;
+  text-shadow: 0 0 10px var(--ecto-glow);
+  display: block;
+  margin-bottom: 16px;
+  text-decoration: none;
+  transition: transform 0.2s ease, text-shadow 0.2s ease;
+}
+
+.email-address-display:hover {
+  transform: scale(1.03);
+  text-shadow: 0 0 16px var(--ecto-glow-strong);
+  color: #ffffff;
+}
+
+.email-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-email-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.btn-email-primary {
+  background: linear-gradient(135deg, var(--ecto-green) 0%, var(--ecto-slime) 100%);
+  color: #070a14;
+  border: 1px solid var(--ecto-green);
+  box-shadow: 0 0 14px var(--ecto-glow);
+}
+
+.btn-email-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 24px var(--ecto-glow-strong);
+  color: #000;
+}
+
+.btn-email-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-white);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+}
+
+.btn-email-secondary:hover {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: var(--spectral-purple);
+  transform: translateY(-2px);
+}
+
+.quick-stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quick-stat-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+}
+
+.quick-stat-key {
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quick-stat-val {
+  font-family: var(--font-mono);
+  color: var(--ecto-green);
+  font-weight: 600;
+}
+
+/* Contact Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-label span.req {
+  color: var(--curse-crimson);
+}
+
+.form-control {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  font-family: var(--font-playful);
+  color: #ffffff;
+  background: rgba(11, 17, 32, 0.85);
+  border: 1.5px solid rgba(168, 85, 247, 0.35);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: all 0.25s ease;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.form-control:focus {
+  border-color: var(--ecto-green);
+  box-shadow: 0 0 16px var(--ecto-glow-strong), inset 0 2px 6px rgba(0, 0, 0, 0.4);
+  background: rgba(16, 24, 44, 0.95);
+}
+
+.form-control::placeholder {
+  color: var(--text-ghost);
+}
+
+textarea.form-control {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.btn-submit-message {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 28px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #070a14;
+  background: linear-gradient(135deg, var(--ecto-green) 0%, var(--ecto-slime) 100%);
+  border: 1px solid var(--ecto-green);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 0 20px var(--ecto-glow);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 6px;
+}
+
+.btn-submit-message:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 30px var(--ecto-glow-strong);
+  color: #000;
+}
+
+.form-notice {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 8px;
+}
+
+.form-status-alert {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+  display: none;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+}
+
+.form-status-alert.success {
+  display: flex;
+  background: rgba(0, 255, 136, 0.12);
+  border: 1.5px solid var(--ecto-green);
+  color: #d1fae5;
+}
+
+.nav-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  color: var(--spectral-lilac);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nav-contact-link:hover, .nav-contact-link.active {
+  background: rgba(0, 255, 136, 0.15);
+  border-color: var(--ecto-green);
+  color: var(--ecto-green);
+  box-shadow: 0 0 12px var(--ecto-glow);
+}
+
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

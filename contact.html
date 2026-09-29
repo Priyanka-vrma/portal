@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact The Cryptmaster // The Haunted Arcade</title>
+  <meta name="description" content="Connect with Priyanka, creator of The Haunted Arcade. Send inquiries, bug reports, and spectral feedback to pv101298@gmail.com.">
+  <meta name="theme-color" content="#070a14">
+
+  <!-- Favicon: Cute Spooky Ghost -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M20,60 C20,25 80,25 80,60 C80,85 75,95 68,90 C60,85 55,95 48,90 C40,85 35,95 28,90 C22,85 20,75 20,60 Z' fill='%2300ff88'/><circle cx='38' cy='48' r='6' fill='%23070a14'/><circle cx='62' cy='48' r='6' fill='%23070a14'/><circle cx='40' cy='46' r='2' fill='%23ffffff'/><circle cx='64' cy='46' r='2' fill='%23ffffff'/><circle cx='32' cy='56' r='4' fill='%23ff70a6'/><circle cx='68' cy='56' r='4' fill='%23ff70a6'/><ellipse cx='50' cy='58' rx='4' ry='5' fill='%23070a14'/></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Fredoka:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="haunted-theme">
+  <!-- Ambient Ghost Glow & Fog -->
+  <div class="ambient-glow-top" aria-hidden="true"></div>
+  <div class="ambient-noise" aria-hidden="true"></div>
+  <div class="crypt-fog" aria-hidden="true"></div>
+
+  <!-- Floating Cute Background Ghosts -->
+  <div class="haunted-background" aria-hidden="true">
+    <div class="bg-ghost ghost-bob-1">
+      <svg class="floating-ghost-svg" viewBox="0 0 100 120">
+        <path class="ghost-shape" d="M 20 60 C 20 22, 80 22, 80 60 C 80 85, 75 105, 68 98 C 60 90, 56 106, 48 98 C 40 90, 36 106, 28 98 C 22 92, 20 80, 20 60 Z"/>
+        <circle cx="34" cy="50" r="5" class="ghost-eye"/>
+        <circle cx="66" cy="50" r="5" class="ghost-eye"/>
+        <circle cx="36" cy="48" r="1.8" class="ghost-pupil-white"/>
+        <circle cx="68" cy="48" r="1.8" class="ghost-pupil-white"/>
+        <circle cx="28" cy="58" r="4.5" class="ghost-blush"/>
+        <circle cx="72" cy="58" r="4.5" class="ghost-blush"/>
+        <path d="M 44 58 Q 50 65 56 58" class="ghost-mouth-smile"/>
+      </svg>
+    </div>
+    <div class="bg-ghost ghost-bob-2">
+      <svg class="floating-ghost-svg" viewBox="0 0 100 120">
+        <path class="ghost-shape purple-spirit" d="M 22 58 C 22 20, 78 20, 78 58 C 78 84, 72 102, 65 96 C 58 88, 54 104, 46 96 C 38 88, 34 104, 27 96 C 22 90, 22 78, 22 58 Z"/>
+        <ellipse cx="37" cy="46" rx="5" ry="7" class="ghost-eye"/>
+        <ellipse cx="63" cy="46" rx="5" ry="7" class="ghost-eye"/>
+        <circle cx="39" cy="44" r="2" class="ghost-pupil-white"/>
+        <circle cx="65" cy="44" r="2" class="ghost-pupil-white"/>
+        <circle cx="30" cy="56" r="4" class="ghost-blush"/>
+        <circle cx="70" cy="56" r="4" class="ghost-blush"/>
+        <ellipse cx="50" cy="59" rx="4" ry="5.5" class="ghost-mouth-gasp"/>
+      </svg>
+    </div>
+    <div class="spectral-wisp wisp-1"></div>
+    <div class="spectral-wisp wisp-2"></div>
+  </div>
+
+  <!-- Haunted Arcade Navigation Bar -->
+  <header class="portal-nav">
+    <div class="portal-nav-container">
+      <div class="nav-brand">
+        <a href="index.html" class="brand-link" aria-label="The Haunted Arcade Home">
+          <div class="brand-ghost-emblem" aria-hidden="true">
+            <svg viewBox="0 0 100 100" class="brand-svg">
+              <path d="M 25 55 C 25 24, 75 24, 75 55 C 75 80, 70 95, 63 90 C 56 84, 53 96, 47 90 C 41 84, 37 96, 31 90 C 25 84, 25 74, 25 55 Z" fill="#00ff88"/>
+              <ellipse cx="40" cy="46" rx="5" ry="6" fill="#070a14"/>
+              <ellipse cx="60" cy="46" rx="5" ry="6" fill="#070a14"/>
+              <circle cx="42" cy="44" r="2" fill="#ffffff"/>
+              <circle cx="62" cy="44" r="2" fill="#ffffff"/>
+              <circle cx="33" cy="54" r="3.5" fill="#ff70a6"/>
+              <circle cx="67" cy="54" r="3.5" fill="#ff70a6"/>
+              <ellipse cx="50" cy="57" rx="4" ry="4.5" fill="#070a14"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <div class="brand-name">THE HAUNTED <span>ARCADE</span></div>
+            <div class="brand-edition">Cursed Cartridge Edition // 1984</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="nav-stats">
+        <a href="index.html" class="nav-contact-link" style="margin-right: 8px;">
+          <span>🎮</span> Arcade Crypt
+        </a>
+        <a href="contact.html" class="nav-contact-link active">
+          <span>✉️</span> Contact
+        </a>
+        <div class="nav-stat-item" style="margin-left: 8px;">
+          <div class="nav-status-dot ecto-pulse" aria-hidden="true"></div>
+          <span>SPECTRAL DISPATCH ACTIVE</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="contact-container">
+      <!-- Hero Header -->
+      <section class="contact-hero">
+        <div class="hero-meta-label">
+          <span class="hero-badge-ghost">👻</span>
+          <span>Astral Post // Direct Creator Dispatch</span>
+        </div>
+        <h1 class="hero-title" style="margin-top: 12px; margin-bottom: 16px;">
+          SUMMON THE <span class="hero-title-highlight">CRYPTMASTER</span>
+        </h1>
+        <p class="hero-description" style="margin: 0 auto; max-width: 650px;">
+          Have feedback on a cursed cartridge, detected a ghostly glitch, or want to collaborate on new spectral game engines? Send your transmission directly to the creator.
+        </p>
+      </section>
+
+      <!-- Contact Main Grid -->
+      <div class="contact-grid">
+        <!-- Left Column: Direct Connection & Creator Details -->
+        <div class="contact-card">
+          <div class="contact-card-header">
+            <div class="contact-header-icon" aria-hidden="true">👑</div>
+            <div>
+              <h2 class="contact-header-title">Creator &amp; Copyright</h2>
+              <div class="contact-header-subtitle">Official Arcade Registry</div>
+            </div>
+          </div>
+
+          <!-- Creator Highlight Box -->
+          <div class="creator-highlight-box">
+            <span class="creator-badge">Project Creator &amp; Architect</span>
+            <div class="creator-name">
+              <span>Priyanka</span>
+              <span title="Verified Spirit Architect" style="color: var(--ecto-green); font-size: 1.1rem;">✨</span>
+            </div>
+            <div class="creator-copyright">
+              &copy; 2026 Priyanka. All Rights Reserved.
+            </div>
+          </div>
+
+          <!-- Highlighted Email Card -->
+          <div class="email-feature-card">
+            <div class="email-label">Official Contact Frequency</div>
+            <a href="mailto:pv101298@gmail.com" class="email-address-display" id="main-email-link" title="Click to email Priyanka">
+              pv101298@gmail.com
+            </a>
+            <div class="email-actions-row">
+              <a href="mailto:pv101298@gmail.com" class="btn-email-action btn-email-primary">
+                <span>✉️</span> Send Spectral Mail
+              </a>
+              <button type="button" class="btn-email-action btn-email-secondary" id="btn-copy-email">
+                <span id="copy-icon">📋</span>
+                <span id="copy-text">Copy Email</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Fast Facts / Telemetry List -->
+          <div class="quick-stats-list">
+            <div class="quick-stat-item">
+              <span class="quick-stat-key"><span>⚡</span> Response Velocity</span>
+              <span class="quick-stat-val">&lt; 24 Spectral Hours</span>
+            </div>
+            <div class="quick-stat-item">
+              <span class="quick-stat-key"><span>🛡️</span> Data Privacy</span>
+              <span class="quick-stat-val">100% Private (Zero Tracking)</span>
+            </div>
+            <div class="quick-stat-item">
+              <span class="quick-stat-key"><span>📜</span> Open Source License</span>
+              <span class="quick-stat-val">MIT (Copyright 2026 Priyanka)</span>
+            </div>
+            <div class="quick-stat-item">
+              <span class="quick-stat-key"><span>🎮</span> Bound Cartridges</span>
+              <span class="quick-stat-val">10 HTML5/Canvas Games</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Astral Message Transmission Form -->
+        <div class="contact-card">
+          <div class="contact-card-header">
+            <div class="contact-header-icon" aria-hidden="true" style="border-color: var(--ecto-green); background: rgba(0,255,136,0.12);">🔮</div>
+            <div>
+              <h2 class="contact-header-title">Transmit Spirit Message</h2>
+              <div class="contact-header-subtitle">Direct dispatch to pv101298@gmail.com</div>
+            </div>
+          </div>
+
+          <!-- Success Alert Message -->
+          <div id="form-success" class="form-status-alert success" role="alert">
+            <span style="font-size: 1.5rem;">👻</span>
+            <div>
+              <strong>Transmission Prepared!</strong> Opening your email client to send to <code>pv101298@gmail.com</code>.
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <form id="contact-form" class="contact-form" novalidate>
+            <div class="form-group">
+              <label for="sender-name" class="form-label">
+                <span>👤</span> Your Name / Astral Alias <span class="req">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="sender-name" 
+                class="form-control" 
+                placeholder="e.g. Spectral Racer" 
+                required 
+                autocomplete="name"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="sender-email" class="form-label">
+                <span>📬</span> Your Return Email <span class="req">*</span>
+              </label>
+              <input 
+                type="email" 
+                id="sender-email" 
+                class="form-control" 
+                placeholder="e.g. wanderer@arcade.net" 
+                required 
+                autocomplete="email"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="message-subject" class="form-label">
+                <span>🏷️</span> Subject / Curse Topic <span class="req">*</span>
+              </label>
+              <select id="message-subject" class="form-control" style="cursor: pointer;">
+                <option value="General Inquiry">🔮 General Inquiry / Greetings</option>
+                <option value="Game Bug Report">🐛 Cursed Glitch / Bug Report</option>
+                <option value="Game Feature Suggestion">✨ Feature Suggestion / Idea</option>
+                <option value="Collaboration & Licensing">🤝 Collaboration or Partnership</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="sender-message" class="form-label">
+                <span>📜</span> Message Transmission <span class="req">*</span>
+              </label>
+              <textarea 
+                id="sender-message" 
+                class="form-control" 
+                placeholder="Inscribe your thoughts, feedback, or inquiries into the ethereal dispatch..." 
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit-message">
+              <span>⚡</span> Transmit to Priyanka
+            </button>
+
+            <div class="form-notice">
+              🔒 Your message will be routed directly to <strong>pv101298@gmail.com</strong>. No data is stored on remote servers.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Haunted Arcade Footer -->
+  <footer class="portal-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand-column">
+          <div class="brand-name">THE HAUNTED <span>ARCADE</span></div>
+          <p class="footer-tagline">
+            An astral browser gaming initiative summoned from the depths of pure HTML5 Canvas &amp; WebGL. 
+            All games certified 100% poltergeist-free. Created by Priyanka.
+          </p>
+          <div class="footer-lore-note">
+            ⚠️ <em>Need urgent assistance banishing a cursed high-score ghost? Reach out to <strong style="color:var(--ecto-green);">pv101298@gmail.com</strong>.</em>
+          </div>
+        </div>
+
+        <div class="footer-badges">
+          <div class="footer-badge">
+            <span class="badge-icon-ghost">👑</span>
+            <span>Created by Priyanka</span>
+          </div>
+          <div class="footer-badge">
+            <span class="badge-icon-ghost">🛡️</span>
+            <span>Poltergeist Protected (CC0)</span>
+          </div>
+          <div class="footer-badge">
+            <span class="badge-icon-ghost">👻</span>
+            <span>Zero Soul Telemetry Trackers</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 The Haunted Arcade by Priyanka. All rights reserved. Built with ectoplasm, JavaScript, and restless spirits.</div>
+        <div class="footer-links">
+          <a href="index.html" class="footer-link">The Crypt Catalog</a>
+          <a href="index.html#tab-racing" class="footer-link">Phantom Racers</a>
+          <a href="index.html#tab-combat" class="footer-link">Spectral Combat</a>
+          <a href="contact.html" class="footer-link active" style="color: var(--ecto-green);">Contact Cryptmaster</a>
+          <a href="PRIVACY.md" class="footer-link">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Contact Form & Copy Script -->
+  <script>
+    (function () {
+      const email = 'pv101298@gmail.com';
+      const btnCopy = document.getElementById('btn-copy-email');
+      const copyText = document.getElementById('copy-text');
+      const copyIcon = document.getElementById('copy-icon');
+      const form = document.getElementById('contact-form');
+      const alertSuccess = document.getElementById('form-success');
+
+      // Copy email to clipboard
+      if (btnCopy) {
+        btnCopy.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(email);
+            copyText.textContent = 'Copied to Clipboard! ✨';
+            copyIcon.textContent = '✓';
+            btnCopy.style.borderColor = 'var(--ecto-green)';
+            btnCopy.style.color = 'var(--ecto-green)';
+            setTimeout(() => {
+              copyText.textContent = 'Copy Email';
+              copyIcon.textContent = '📋';
+              btnCopy.style.borderColor = '';
+              btnCopy.style.color = '';
+            }, 2500);
+          } catch (err) {
+            // Fallback for older browsers
+            window.prompt('Copy email address:', email);
+          }
+        });
+      }
+
+      // Handle form submission
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('sender-name').value.trim();
+          const senderEmail = document.getElementById('sender-email').value.trim();
+          const subject = document.getElementById('message-subject').value;
+          const message = document.getElementById('sender-message').value.trim();
+
+          if (!name || !senderEmail || !message) {
+            alert('Please fill out all required fields to transmit your message.');
+            return;
+          }
+
+          if (alertSuccess) {
+            alertSuccess.style.display = 'flex';
+          }
+
+          // Build mailto query
+          const mailtoSubject = encodeURIComponent(`[Haunted Arcade] ${subject} - from ${name}`);
+          const mailtoBody = encodeURIComponent(`Sender Name: ${name}\nReturn Email: ${senderEmail}\nTopic: ${subject}\n\nMessage:\n${message}\n\n-- Sent via The Haunted Arcade Contact Portal`);
+          
+          setTimeout(() => {
+            window.location.href = `mailto:${email}?subject=${mailtoSubject}&body=${mailtoBody}`;
+          }, 600);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
