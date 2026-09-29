@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="ironSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#04070e"/>
+      <stop offset="50%" stop-color="#0b1324"/>
+      <stop offset="100%" stop-color="#14192b"/>
+    </linearGradient>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.4"/>
+      <stop offset="60%" stop-color="#818cf8" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#1e1b4b" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="tracerBeam" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="ironGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="800" height="450" fill="url(#ironSky)"/>
+
+  <!-- Radar Grid Background Concentric Circles -->
+  <g opacity="0.15" stroke="#38bdf8" stroke-width="1" fill="none">
+    <circle cx="400" cy="400" r="150"/>
+    <circle cx="400" cy="400" r="280"/>
+    <circle cx="400" cy="400" r="400"/>
+    <line x1="400" y1="0" x2="400" y2="400"/>
+    <line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="120" y1="120" x2="400" y2="400"/>
+    <line x1="680" y1="120" x2="400" y2="400"/>
+  </g>
+
+  <!-- Incoming Aerial Targets & Flak Explosions -->
+  <g>
+    <!-- Flak burst 1 -->
+    <circle cx="280" cy="110" r="14" fill="#ef4444" opacity="0.6" filter="url(#ironGlow)"/>
+    <circle cx="280" cy="110" r="6" fill="#fef08a"/>
+    <line x1="260" y1="110" x2="300" y2="110" stroke="#f97316" stroke-width="2"/>
+    <line x1="280" y1="90" x2="280" y2="130" stroke="#f97316" stroke-width="2"/>
+
+    <!-- Flak burst 2 -->
+    <circle cx="560" cy="130" r="18" fill="#f59e0b" opacity="0.5" filter="url(#ironGlow)"/>
+    <circle cx="560" cy="130" r="8" fill="#ffffff"/>
+
+    <!-- Aerial drones / hostiles -->
+    <polygon points="210,140 230,146 225,149 205,145" fill="#ef4444"/>
+    <polygon points="630,95 650,92 645,100 625,98" fill="#ef4444"/>
+  </g>
+
+  <!-- Hexagonal Energy Shield Dome Over Base -->
+  <path d="M 120 400 C 120 180, 680 180, 680 400 Z" fill="url(#shieldGrad)" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="15 6" opacity="0.75" filter="url(#ironGlow)"/>
+
+  <!-- Hex Pattern Accents on Shield Dome -->
+  <g opacity="0.35" stroke="#38bdf8" stroke-width="1.2" fill="none">
+    <polygon points="400,220 420,232 420,255 400,267 380,255 380,232"/>
+    <polygon points="440,242 460,254 460,277 440,289 420,277 420,254"/>
+    <polygon points="360,242 380,254 380,277 360,289 340,277 340,254"/>
+    <polygon points="400,268 420,280 420,303 400,315 380,303 380,280"/>
+  </g>
+
+  <!-- Fortified Bunker / Bastion Base -->
+  <polygon points="0,380 800,380 800,450 0,450" fill="#0b0f19"/>
+  <polygon points="200,380 250,330 550,330 600,380" fill="#141b2a" stroke="#223049" stroke-width="2"/>
+  <!-- Armored Blast Walls and Embrasures -->
+  <rect x="290" y="345" width="40" height="12" fill="#090d16" stroke="#334155" stroke-width="1"/>
+  <rect x="380" y="345" width="40" height="12" fill="#090d16" stroke="#334155" stroke-width="1"/>
+  <rect x="470" y="345" width="40" height="12" fill="#090d16" stroke="#334155" stroke-width="1"/>
+
+  <!-- Massive Twin Heavy Defense Turret (Pivoted Skyward) -->
+  <g transform="translate(400, 310)">
+    <!-- Turret Base Ring -->
+    <ellipse cx="0" cy="20" rx="60" ry="16" fill="#0f172a" stroke="#3b82f6" stroke-width="2"/>
+    
+    <!-- Armored Turret Chassis -->
+    <path d="M -45 15 L -35 -20 L 35 -20 L 45 15 Z" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+    <circle cx="0" cy="-5" r="10" fill="#0284c7"/>
+
+    <!-- Left Heavy Rail Barrel -->
+    <g transform="rotate(-32, -15, -15)">
+      <rect x="-24" y="-120" width="16" height="110" rx="3" fill="#090d16" stroke="#38bdf8" stroke-width="1.5"/>
+      <rect x="-26" y="-125" width="20" height="14" fill="#334155"/>
+      <!-- Muzzle Flash & Laser Tracer -->
+      <polygon points="-16,-125 -60,-400 -5,-400" fill="url(#tracerBeam)" filter="url(#ironGlow)"/>
+      <circle cx="-16" cy="-125" r="14" fill="#ffffff" filter="url(#ironGlow)"/>
+    </g>
+
+    <!-- Right Heavy Rail Barrel -->
+    <g transform="rotate(-28, 15, -15)">
+      <rect x="8" y="-120" width="16" height="110" rx="3" fill="#090d16" stroke="#38bdf8" stroke-width="1.5"/>
+      <rect x="6" y="-125" width="20" height="14" fill="#334155"/>
+      <!-- Muzzle Flash & Laser Tracer -->
+      <polygon points="16,-125 10,-400 65,-400" fill="url(#tracerBeam)" filter="url(#ironGlow)"/>
+      <circle cx="16" cy="-125" r="14" fill="#ffffff" filter="url(#ironGlow)"/>
+    </g>
+  </g>
+
+  <!-- Shell Ejection Glow -->
+  <ellipse cx="440" cy="315" rx="8" ry="4" fill="#f59e0b" filter="url(#ironGlow)"/>
+
+  <!-- Badge Pill -->
+  <rect x="36" y="32" width="138" height="24" rx="4" fill="#0f172a" fill-opacity="0.85" stroke="#38bdf8" stroke-width="1"/>
+  <text x="46" y="48" fill="#38bdf8" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5">ARMS &amp; COMBAT</text>
+
+  <!-- Game Title -->
+  <text x="36" y="92" fill="#ffffff" font-family="'Inter', system-ui, sans-serif" font-size="32" font-weight="900" letter-spacing="2">IRON GUARD</text>
+  <text x="38" y="112" fill="#93c5fd" font-family="'Inter', system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="3">BASE DEFENSE // TACTICAL STRONGHOLD</text>
+
+  <!-- Shield Integrity HUD -->
+  <g transform="translate(630, 36)" opacity="0.85">
+    <rect width="134" height="46" rx="4" fill="#09111e" stroke="#1e293b" stroke-width="1"/>
+    <text x="12" y="18" fill="#38bdf8" font-family="'Inter', monospace" font-size="9" letter-spacing="1">DEFENSE SHIELD</text>
+    <text x="12" y="34" fill="#10b981" font-family="'Inter', monospace" font-size="13" font-weight="800">ONLINE // 94%</text>
+    <circle cx="116" cy="22" r="5" fill="#38bdf8" filter="url(#ironGlow)"/>
+  </g>
+
+  <!-- Framing Accents -->
+  <path d="M 20 30 L 20 20 L 30 20" stroke="#38bdf8" stroke-width="2" fill="none"/>
+  <path d="M 780 30 L 780 20 L 770 20" stroke="#38bdf8" stroke-width="2" fill="none"/>
+  <path d="M 20 420 L 20 430 L 30 430" stroke="#38bdf8" stroke-width="2" fill="none"/>
+  <path d="M 780 420 L 780 430 L 770 430" stroke="#38bdf8" stroke-width="2" fill="none"/>
+</svg>

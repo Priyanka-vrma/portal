@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Mech Assault: Frontline // Haunted Arcade</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #07090e; color: #f8fafc; font-family: 'Segoe UI', system-ui, sans-serif; cursor: crosshair; }
+    #game-container { position: relative; width: 100%; height: 100%; }
+    canvas { display: block; width: 100%; height: 100%; background: #0c1018; }
+    .hud-overlay { position: absolute; top: 12px; left: 14px; right: 14px; display: flex; justify-content: space-between; pointer-events: none; z-index: 10; }
+    .hud-card { background: rgba(12, 16, 24, 0.85); border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 8px; padding: 8px 14px; backdrop-filter: blur(8px); }
+    .hud-title { font-size: 0.72rem; color: #c084fc; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+    .hud-val { font-size: 1.4rem; font-weight: 800; font-family: monospace; color: #fff; }
+    .hud-sub { font-size: 0.75rem; color: #d8b4fe; }
+    .heat-bar-wrap { width: 130px; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; margin-top: 4px; }
+    .heat-bar-fill { width: 0%; height: 100%; background: #22c55e; transition: width 0.1s linear; }
+    .controls-hint { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); background: rgba(12, 16, 24, 0.85); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 20px; padding: 6px 16px; font-size: 0.76rem; color: #e9d5ff; pointer-events: none; }
+    .controls-hint kbd { background: #3b0764; border: 1px solid #7e22ce; border-radius: 4px; padding: 1px 5px; color: #d8b4fe; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <canvas id="canvas" width="1280" height="720"></canvas>
+    <div class="hud-overlay">
+      <div class="hud-card">
+        <div class="hud-title">REACTOR HEAT CORE</div>
+        <div class="hud-val" id="hud-heat">24%</div>
+        <div class="heat-bar-wrap"><div class="heat-bar-fill" id="hud-heat-bar"></div></div>
+      </div>
+      <div class="hud-card" style="text-align: center;">
+        <div class="hud-title">ARMOR INTEGRITY</div>
+        <div class="hud-val" id="hud-armor" style="color:#00ff88;">100% [HEAVY TITAN]</div>
+        <div class="hud-sub" id="hud-mechs">HOSTILE MECHS: 3 DETECTED</div>
+      </div>
+      <div class="hud-card" style="text-align: right;">
+        <div class="hud-title">WEAPON LOADOUT</div>
+        <div class="hud-val" id="hud-weapon" style="color:#c084fc;">DUAL 40MM + MISSILES</div>
+        <div class="hud-sub">LOCK-ON: [SPACE / RIGHT-CLICK]</div>
+      </div>
+    </div>
+    <div class="controls-hint">
+      <kbd>WASD</kbd> Locomotion • <kbd>MOUSE</kbd> Aim Torso • <kbd>LEFT-CLICK</kbd> Autocannon • <kbd>SPACE</kbd> Missile Swarm • <kbd>SHIFT</kbd> Jump Jets
+    </div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Baja Dunes: 4x4 Offroad // Haunted Arcade</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #1c1306; color: #fef3c7; font-family: 'Segoe UI', system-ui, sans-serif; }
+    #game-container { position: relative; width: 100%; height: 100%; }
+    canvas { display: block; width: 100%; height: 100%; background: #261b09; }
+    .hud-overlay { position: absolute; top: 12px; left: 14px; right: 14px; display: flex; justify-content: space-between; pointer-events: none; z-index: 10; }
+    .hud-card { background: rgba(28, 19, 6, 0.85); border: 1px solid rgba(217, 119, 6, 0.4); border-radius: 8px; padding: 8px 14px; backdrop-filter: blur(8px); }
+    .hud-title { font-size: 0.72rem; color: #f59e0b; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+    .hud-val { font-size: 1.4rem; font-weight: 800; font-family: monospace; color: #fff; }
+    .hud-sub { font-size: 0.75rem; color: #d97706; }
+    .controls-hint { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); background: rgba(28, 19, 6, 0.85); border: 1px solid rgba(217, 119, 6, 0.3); border-radius: 20px; padding: 6px 16px; font-size: 0.76rem; color: #fde68a; pointer-events: none; }
+    .controls-hint kbd { background: #451a03; border: 1px solid #78350f; border-radius: 4px; padding: 1px 5px; color: #fbbf24; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <canvas id="canvas" width="1280" height="720"></canvas>
+    <div class="hud-overlay">
+      <div class="hud-card">
+        <div class="hud-title">SPEED // 4WD RATIO</div>
+        <div class="hud-val" id="hud-speed">0 <span style="font-size:0.85rem;color:#f59e0b;">KM/H</span></div>
+        <div class="hud-sub" id="hud-mode">4WD LOW: LOCKED</div>
+      </div>
+      <div class="hud-card" style="text-align: center;">
+        <div class="hud-title">AIR-TIME // WEIGHT TRANSFER</div>
+        <div class="hud-val" id="hud-air" style="color:#10b981;">0.0 s</div>
+        <div class="hud-sub" id="hud-pitch">PITCH: +0.0° • ROLL: +0.0°</div>
+      </div>
+      <div class="hud-card" style="text-align: right;">
+        <div class="hud-title">WAYPOINT DISTANCE</div>
+        <div class="hud-val" id="hud-waypoint" style="color:#f59e0b;">WP 1/8</div>
+        <div class="hud-sub" id="hud-dist">320 METERS</div>
+      </div>
+    </div>
+    <div class="controls-hint">
+      <kbd>W/↑</kbd> 4WD Gas • <kbd>S/↓</kbd> Brakes • <kbd>A/D</kbd> Steer • <kbd>SPACE</kbd> Diff Lock • <kbd>SHIFT</kbd> Nitro
+    </div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="canyonSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0b0813"/>
+      <stop offset="40%" stop-color="#2c1228"/>
+      <stop offset="70%" stop-color="#6e2329"/>
+      <stop offset="100%" stop-color="#d95d39"/>
+    </linearGradient>
+    <linearGradient id="cliffGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e1022"/>
+      <stop offset="100%" stop-color="#0e0811"/>
+    </linearGradient>
+    <linearGradient id="cliffGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3d1b22"/>
+      <stop offset="100%" stop-color="#180b12"/>
+    </linearGradient>
+    <linearGradient id="groundGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#241416"/>
+      <stop offset="100%" stop-color="#0d090d"/>
+    </linearGradient>
+    <radialGradient id="dustRoost" cx="40%" cy="60%" r="60%">
+      <stop offset="0%" stop-color="#e06c42" stop-opacity="0.4"/>
+      <stop offset="50%" stop-color="#732b21" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#12080a" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="canyonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="800" height="450" fill="url(#canyonSky)"/>
+
+  <!-- Giant Dusk Sun / Horizon Glow -->
+  <circle cx="520" cy="230" r="110" fill="#f59e0b" opacity="0.35" filter="url(#canyonGlow)"/>
+  <circle cx="520" cy="230" r="70" fill="#f97316" opacity="0.5"/>
+
+  <!-- Distant Mountain Ranges -->
+  <polygon points="0,260 110,210 220,250 350,190 490,240 600,180 720,230 800,195 800,320 0,320" fill="url(#cliffGrad1)" opacity="0.8"/>
+
+  <!-- Midground Canyon Buttes and Spires -->
+  <path d="M 0 290 L 70 230 L 130 230 L 170 290 L 260 270 L 310 200 L 380 200 L 440 290 L 620 280 L 680 220 L 760 220 L 800 270 L 800 370 L 0 370 Z" fill="url(#cliffGrad2)"/>
+
+  <!-- Topo Isolines Pattern -->
+  <g opacity="0.12" stroke="#f97316" stroke-width="1" fill="none">
+    <path d="M 0 180 Q 200 150 400 190 T 800 160"/>
+    <path d="M 0 200 Q 200 170 400 210 T 800 180"/>
+    <path d="M 0 220 Q 200 190 400 230 T 800 200"/>
+  </g>
+
+  <!-- Canyon Road / Dirt Ground -->
+  <polygon points="0,320 800,320 800,450 0,450" fill="url(#groundGrad)"/>
+
+  <!-- Ridge Edge & Gravel Highlights -->
+  <path d="M 0 322 Q 220 310 440 330 T 800 315" stroke="#f97316" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M 60 360 L 780 340" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="16 12" opacity="0.4"/>
+
+  <!-- Dust Plumes from Rally Car -->
+  <ellipse cx="260" cy="360" rx="140" ry="45" fill="url(#dustRoost)"/>
+  <ellipse cx="190" cy="370" rx="90" ry="35" fill="url(#dustRoost)"/>
+  <circle cx="340" cy="355" r="45" fill="url(#dustRoost)"/>
+
+  <!-- Rally Car (Angled Slide / Counter-Steering WRC Hatchback) -->
+  <g transform="translate(300, 255) scale(0.95)">
+    <!-- Dust under wheels -->
+    <ellipse cx="180" cy="115" rx="110" ry="12" fill="#ef4444" opacity="0.3" filter="url(#canyonGlow)"/>
+
+    <!-- Car Body -->
+    <path d="M 40 100
+             L 70 80
+             L 130 50
+             L 210 50
+             L 270 85
+             L 295 95
+             L 295 108
+             L 260 112
+             L 248 95
+             L 215 95
+             L 205 112
+             L 105 112
+             L 95 95
+             L 65 95
+             L 55 110
+             Z" 
+          fill="#1c1922" stroke="#ef4444" stroke-width="2"/>
+
+    <!-- Roof Scoop & Spoiler -->
+    <polygon points="150,48 180,48 175,42 155,42" fill="#ef4444"/>
+    <polygon points="35,70 65,70 55,85 30,85" fill="#f97316"/>
+
+    <!-- Windows -->
+    <polygon points="135,56 205,56 245,84 140,84" fill="#0d1117" stroke="#fdba74" stroke-width="1"/>
+
+    <!-- High-power Rally LED Pod Lights -->
+    <circle cx="288" cy="92" r="5" fill="#ffffff" filter="url(#canyonGlow)"/>
+    <circle cx="282" cy="86" r="4" fill="#fde047" filter="url(#canyonGlow)"/>
+    <polygon points="292,90 480,40 500,160 292,105" fill="#ffffff" opacity="0.18"/>
+
+    <!-- Wheels (Aggressive Offroad Tread) -->
+    <circle cx="80" cy="105" r="18" fill="#111" stroke="#ef4444" stroke-width="3"/>
+    <circle cx="80" cy="105" r="11" fill="#2d2d2d" stroke="#f97316" stroke-width="1"/>
+    <circle cx="232" cy="105" r="18" fill="#111" stroke="#ef4444" stroke-width="3"/>
+    <circle cx="232" cy="105" r="11" fill="#2d2d2d" stroke="#f97316" stroke-width="1"/>
+
+    <!-- Livery Racing Stripes -->
+    <path d="M 85 86 L 255 86" stroke="#f97316" stroke-width="3"/>
+    <path d="M 100 92 L 245 92" stroke="#ef4444" stroke-width="2"/>
+  </g>
+
+  <!-- Dust Debris Flying Particles -->
+  <circle cx="240" cy="380" r="3" fill="#f97316" opacity="0.8"/>
+  <circle cx="210" cy="360" r="2" fill="#fdba74" opacity="0.7"/>
+  <circle cx="290" cy="390" r="4" fill="#ea580c" opacity="0.8"/>
+  <circle cx="180" cy="395" r="2.5" fill="#f97316" opacity="0.6"/>
+
+  <!-- Badge Pill -->
+  <rect x="36" y="32" width="138" height="24" rx="4" fill="#181119" fill-opacity="0.85" stroke="#ef4444" stroke-width="1"/>
+  <text x="46" y="48" fill="#f87171" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5">REALISTIC RACING</text>
+
+  <!-- Game Title -->
+  <text x="36" y="92" fill="#ffffff" font-family="'Inter', system-ui, sans-serif" font-size="32" font-weight="900" letter-spacing="2">CANYON APEX</text>
+  <text x="38" y="112" fill="#fdba74" font-family="'Inter', system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="3">RALLY CROSS // GRAVEL ATTACK</text>
+
+  <!-- Telemetry Badge -->
+  <g transform="translate(640, 36)" opacity="0.85">
+    <rect width="124" height="42" rx="4" fill="#130d14" stroke="#2d1d2b" stroke-width="1"/>
+    <text x="12" y="18" fill="#f97316" font-family="'Inter', monospace" font-size="9" letter-spacing="1">SURFACE GRIP</text>
+    <text x="12" y="33" fill="#ef4444" font-family="'Inter', monospace" font-size="14" font-weight="800">GRAVEL // 64%</text>
+    <circle cx="106" cy="22" r="5" fill="#f97316"/>
+  </g>
+
+  <!-- Framing Accents -->
+  <path d="M 20 30 L 20 20 L 30 20" stroke="#ef4444" stroke-width="2" fill="none"/>
+  <path d="M 780 30 L 780 20 L 770 20" stroke="#ef4444" stroke-width="2" fill="none"/>
+  <path d="M 20 420 L 20 430 L 30 430" stroke="#ef4444" stroke-width="2" fill="none"/>
+  <path d="M 780 420 L 780 430 L 770 430" stroke="#ef4444" stroke-width="2" fill="none"/>
+</svg>

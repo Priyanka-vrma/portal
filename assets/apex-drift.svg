@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#06080d"/>
+      <stop offset="60%" stop-color="#120e24"/>
+      <stop offset="100%" stop-color="#1d1238"/>
+    </linearGradient>
+    <linearGradient id="roadGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#090b10"/>
+      <stop offset="100%" stop-color="#141824"/>
+    </linearGradient>
+    <linearGradient id="neonPurple" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#d946ef"/>
+    </linearGradient>
+    <linearGradient id="neonCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <radialGradient id="smokeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#3b82f6" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#090b10" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="headlightGlow" cx="30%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="40%" stop-color="#38bdf8" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#skyGrad)"/>
+
+  <!-- Grid Perspective Ceiling / Stars -->
+  <g opacity="0.15">
+    <line x1="100" y1="0" x2="400" y2="240" stroke="#8b5cf6" stroke-width="1"/>
+    <line x1="250" y1="0" x2="400" y2="240" stroke="#8b5cf6" stroke-width="1"/>
+    <line x1="550" y1="0" x2="400" y2="240" stroke="#8b5cf6" stroke-width="1"/>
+    <line x1="700" y1="0" x2="400" y2="240" stroke="#8b5cf6" stroke-width="1"/>
+    <line x1="0" y1="60" x2="800" y2="60" stroke="#8b5cf6" stroke-width="0.5"/>
+    <line x1="0" y1="140" x2="800" y2="140" stroke="#8b5cf6" stroke-width="0.5"/>
+  </g>
+
+  <!-- Distant City Skyline Silhouettes -->
+  <path d="M 40 240 L 40 160 L 75 160 L 75 130 L 95 130 L 95 180 L 140 180 L 140 110 L 170 110 L 170 240 Z" fill="#151329" opacity="0.7"/>
+  <path d="M 190 240 L 190 140 L 230 140 L 245 100 L 260 140 L 310 140 L 310 240 Z" fill="#181530" opacity="0.8"/>
+  <path d="M 330 240 L 330 150 L 370 150 L 370 120 L 410 120 L 410 240 Z" fill="#15122c" opacity="0.7"/>
+  <path d="M 440 240 L 440 90 L 450 90 L 450 70 L 455 70 L 455 90 L 485 90 L 485 240 Z" fill="#1f183d" opacity="0.9"/>
+  <path d="M 520 240 L 520 130 L 580 130 L 580 165 L 610 165 L 610 240 Z" fill="#171431" opacity="0.75"/>
+  <path d="M 640 240 L 640 115 L 690 115 L 720 150 L 760 150 L 760 240 Z" fill="#120f26" opacity="0.85"/>
+
+  <!-- Neon Windows & Tower Beacons -->
+  <circle cx="452" cy="68" r="3" fill="#ef4444" filter="url(#glow)"/>
+  <line x1="245" y1="98" x2="245" y2="70" stroke="#06b6d4" stroke-width="1.5" filter="url(#glow)"/>
+  <rect x="455" y="105" width="20" height="2" fill="#8b5cf6" opacity="0.9"/>
+  <rect x="455" y="115" width="15" height="2" fill="#06b6d4" opacity="0.9"/>
+  <rect x="455" y="125" width="22" height="2" fill="#d946ef" opacity="0.9"/>
+  <rect x="150" y="130" width="12" height="2" fill="#f59e0b" opacity="0.8"/>
+  <rect x="150" y="140" width="12" height="2" fill="#f59e0b" opacity="0.8"/>
+
+  <!-- Ground / Wet Asphalt Road -->
+  <polygon points="0,240 800,240 800,450 0,450" fill="url(#roadGrad)"/>
+
+  <!-- Road Grid & Neon Markings (Perspective) -->
+  <g opacity="0.4">
+    <line x1="400" y1="240" x2="0" y2="450" stroke="#8b5cf6" stroke-width="2"/>
+    <line x1="400" y1="240" x2="200" y2="450" stroke="#3b82f6" stroke-width="1.5"/>
+    <line x1="400" y1="240" x2="400" y2="450" stroke="#f43f5e" stroke-width="2" stroke-dasharray="25 15"/>
+    <line x1="400" y1="240" x2="600" y2="450" stroke="#3b82f6" stroke-width="1.5"/>
+    <line x1="400" y1="240" x2="800" y2="450" stroke="#8b5cf6" stroke-width="2"/>
+  </g>
+
+  <!-- Wet Street Reflection -->
+  <ellipse cx="440" cy="380" rx="220" ry="18" fill="url(#smokeGlow)"/>
+
+  <!-- Drift Smoke -->
+  <circle cx="280" cy="340" r="70" fill="url(#smokeGlow)"/>
+  <circle cx="210" cy="355" r="90" fill="url(#smokeGlow)"/>
+  <circle cx="340" cy="345" r="50" fill="url(#smokeGlow)"/>
+
+  <!-- Drift Car Silhouette (Angled / Drifting JDM Sports Car) -->
+  <g transform="translate(180, 180) rotate(-6)">
+    <!-- Underglow -->
+    <ellipse cx="230" cy="165" rx="140" ry="12" fill="#a855f7" opacity="0.8" filter="url(#glow)"/>
+    
+    <!-- Shadow -->
+    <ellipse cx="225" cy="162" rx="135" ry="10" fill="#030407"/>
+
+    <!-- Car Body -->
+    <path d="M 90 145 
+             L 125 125 
+             L 175 110 
+             L 245 80 
+             L 315 80 
+             L 355 115 
+             L 375 128 
+             L 380 148 
+             L 350 152 
+             L 340 138 
+             L 310 138 
+             L 300 154 
+             L 170 155 
+             L 160 138 
+             L 130 138 
+             L 120 152 
+             Z" 
+          fill="#181b24" stroke="#8b5cf6" stroke-width="2"/>
+
+    <!-- Cockpit & Windshield -->
+    <path d="M 235 86 L 305 86 L 340 115 L 210 115 Z" fill="#0d1117" stroke="#38bdf8" stroke-width="1.2"/>
+    <path d="M 245 90 L 300 90 L 330 112 L 225 112 Z" fill="#1e293b" opacity="0.6"/>
+
+    <!-- Aero Rear Wing / Spoiler -->
+    <path d="M 95 105 L 125 105 L 115 125 L 98 125 Z" fill="#2e1065" stroke="#d946ef" stroke-width="1.5"/>
+    <line x1="108" y1="125" x2="105" y2="140" stroke="#475569" stroke-width="3"/>
+
+    <!-- Rear Tail Light Glow (Trailing Red/Crimson Streak) -->
+    <path d="M 90 142 L 130 132" stroke="#ef4444" stroke-width="5" filter="url(#glow)"/>
+    <path d="M 90 142 L 0 146" stroke="#ef4444" stroke-width="3" opacity="0.6" filter="url(#glow)"/>
+
+    <!-- Headlight Beam (Cyan High Intensity) -->
+    <polygon points="375,135 600,100 650,220 375,148" fill="url(#headlightGlow)" opacity="0.8"/>
+    <ellipse cx="372" cy="138" rx="8" ry="4" fill="#ffffff" filter="url(#glow)"/>
+
+    <!-- Wheels / Rims with Neon Cyan Lip -->
+    <circle cx="145" cy="148" r="20" fill="#0b0e14" stroke="#334155" stroke-width="3"/>
+    <circle cx="145" cy="148" r="14" fill="#1e293b" stroke="#06b6d4" stroke-width="1.5"/>
+    <circle cx="145" cy="148" r="6" fill="#64748b"/>
+
+    <circle cx="325" cy="148" r="20" fill="#0b0e14" stroke="#334155" stroke-width="3"/>
+    <circle cx="325" cy="148" r="14" fill="#1e293b" stroke="#06b6d4" stroke-width="1.5"/>
+    <circle cx="325" cy="148" r="6" fill="#64748b"/>
+  </g>
+
+  <!-- Speed Streak Lines -->
+  <g opacity="0.7">
+    <line x1="50" y1="365" x2="260" y2="360" stroke="#d946ef" stroke-width="1.5" stroke-dasharray="12 8"/>
+    <line x1="90" y1="385" x2="310" y2="380" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="20 10"/>
+    <line x1="20" y1="410" x2="380" y2="405" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="30 15"/>
+  </g>
+
+  <!-- Ghost Minimalist HUD Overlay Elements -->
+  <rect x="36" y="32" width="138" height="24" rx="4" fill="#121620" fill-opacity="0.85" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="46" y="48" fill="#a78bfa" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5">REALISTIC RACING</text>
+
+  <!-- Game Title / Typography Overlay -->
+  <text x="36" y="92" fill="#ffffff" font-family="'Inter', system-ui, sans-serif" font-size="32" font-weight="900" letter-spacing="2">APEX DRIFT</text>
+  <text x="38" y="112" fill="#94a3b8" font-family="'Inter', system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="3">TOKYO NIGHTS // TOUGE DYNAMICS</text>
+
+  <!-- Telemetry Watermark Top Right -->
+  <g transform="translate(640, 36)" opacity="0.85">
+    <rect width="124" height="42" rx="4" fill="#10141d" stroke="#1e293b" stroke-width="1"/>
+    <text x="12" y="18" fill="#64748b" font-family="'Inter', monospace" font-size="9" letter-spacing="1">TELEMETRY</text>
+    <text x="12" y="33" fill="#38bdf8" font-family="'Inter', monospace" font-size="14" font-weight="800">184 KM/H</text>
+    <circle cx="106" cy="22" r="5" fill="#10b981"/>
+  </g>
+
+  <!-- Corner framing accents (Ghost CMS signature aesthetic) -->
+  <path d="M 20 30 L 20 20 L 30 20" stroke="#8b5cf6" stroke-width="2" fill="none"/>
+  <path d="M 780 30 L 780 20 L 770 20" stroke="#8b5cf6" stroke-width="2" fill="none"/>
+  <path d="M 20 420 L 20 430 L 30 430" stroke="#8b5cf6" stroke-width="2" fill="none"/>
+  <path d="M 780 420 L 780 430 L 770 430" stroke="#8b5cf6" stroke-width="2" fill="none"/>
+</svg>

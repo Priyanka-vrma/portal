@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="mechSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#050608"/>
+      <stop offset="50%" stop-color="#11131a"/>
+      <stop offset="100%" stop-color="#241520"/>
+    </linearGradient>
+    <linearGradient id="missileTrail" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#f97316"/>
+      <stop offset="80%" stop-color="#ef4444" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#451a03" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="plasmaGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#0284c7" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0c4a6e" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="mechGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="800" height="450" fill="url(#mechSky)"/>
+
+  <!-- Distant Warzone Fires & Ruined City Skyline -->
+  <polygon points="40,320 40,160 90,160 110,210 140,210 140,320" fill="#0e1017"/>
+  <polygon points="620,320 620,180 660,180 680,240 730,240 730,150 780,150 780,320" fill="#0e1017"/>
+  <circle cx="680" cy="300" r="80" fill="#ea580c" opacity="0.15" filter="url(#mechGlow)"/>
+
+  <!-- Ground Battlefield / Rubble -->
+  <polygon points="0,320 800,300 800,450 0,450" fill="#090a0f"/>
+  <path d="M 0 325 Q 400 310 800 305" stroke="#ef4444" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Missile Launch Trails (Arced into Night Sky) -->
+  <path d="M 430 130 Q 520 80 650 40" stroke="url(#missileTrail)" stroke-width="5" fill="none" filter="url(#mechGlow)"/>
+  <circle cx="650" cy="40" r="3" fill="#ffffff" filter="url(#mechGlow)"/>
+
+  <path d="M 435 125 Q 560 60 740 50" stroke="url(#missileTrail)" stroke-width="4" fill="none" filter="url(#mechGlow)"/>
+  <circle cx="740" cy="50" r="2.5" fill="#ffffff" filter="url(#mechGlow)"/>
+
+  <!-- Giant Battle Mech Titan Silhouette (Center-Left) -->
+  <g transform="translate(320, 100)">
+    <!-- Shadow -->
+    <ellipse cx="60" cy="285" rx="140" ry="20" fill="#000000" opacity="0.95"/>
+
+    <!-- Left Leg (Reverse Joint / Digitigrade War Mech) -->
+    <polygon points="10,180 -10,215 5,250 -20,290 20,290 25,250 15,215 35,180" fill="#111622" stroke="#1e293b" stroke-width="2"/>
+    <ellipse cx="-5" cy="290" rx="25" ry="8" fill="#0a0d14"/>
+
+    <!-- Right Leg -->
+    <polygon points="85,180 115,215 95,250 120,290 160,290 135,250 145,215 110,180" fill="#131a29" stroke="#1e293b" stroke-width="2"/>
+    <ellipse cx="140" cy="290" rx="25" ry="8" fill="#0a0d14"/>
+
+    <!-- Pelvis / Hip Joint -->
+    <polygon points="25,170 95,170 85,200 35,200" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <circle cx="60" cy="185" r="8" fill="#0f172a" stroke="#ef4444" stroke-width="1.5"/>
+
+    <!-- Heavy Torso Armored Cockpit -->
+    <polygon points="0,90 120,90 140,140 110,175 10,175 -20,140" fill="#182030" stroke="#38bdf8" stroke-width="2"/>
+
+    <!-- Glowing Cockpit Sensor Visor (Angular Crimson/Amber) -->
+    <polygon points="35,115 85,115 78,132 42,132" fill="#ef4444" filter="url(#mechGlow)"/>
+    <line x1="38" y1="123" x2="82" y2="123" stroke="#fef08a" stroke-width="1.5"/>
+
+    <!-- Right Shoulder Missile Pod (Launcher) -->
+    <rect x="95" y="65" width="45" height="35" rx="3" fill="#0f172a" stroke="#ef4444" stroke-width="2"/>
+    <!-- Missile Tube Cells -->
+    <circle cx="106" cy="74" r="3.5" fill="#ef4444"/>
+    <circle cx="118" cy="74" r="3.5" fill="#ef4444"/>
+    <circle cx="130" cy="74" r="3.5" fill="#ef4444"/>
+    <circle cx="106" cy="88" r="3.5" fill="#ef4444"/>
+    <circle cx="118" cy="88" r="3.5" fill="#fbbf24"/>
+    <circle cx="130" cy="88" r="3.5" fill="#ef4444"/>
+
+    <!-- Left Arm Plasma Cannon (Charging Blaster) -->
+    <path d="M -15,110 L -45,150 L -40,220" stroke="#1e293b" stroke-width="18" stroke-linecap="round" fill="none"/>
+    <rect x="-56" y="200" width="32" height="55" rx="4" fill="#0b0e14" stroke="#38bdf8" stroke-width="2"/>
+    <circle cx="-40" cy="255" r="22" fill="url(#plasmaGlow)"/>
+    <circle cx="-40" cy="255" r="8" fill="#38bdf8" filter="url(#mechGlow)"/>
+    <circle cx="-40" cy="255" r="3" fill="#ffffff"/>
+
+    <!-- Right Arm Heavy Autocannon -->
+    <path d="M 135,110 L 165,150 L 160,230" stroke="#1e293b" stroke-width="18" stroke-linecap="round" fill="none"/>
+    <rect x="150" y="210" width="22" height="60" rx="3" fill="#090c12" stroke="#475569" stroke-width="2"/>
+    <line x1="155" y1="270" x2="155" y2="290" stroke="#64748b" stroke-width="3"/>
+    <line x1="165" y1="270" x2="165" y2="290" stroke="#64748b" stroke-width="3"/>
+  </g>
+
+  <!-- Sparks & Battle Embers -->
+  <g fill="#fbbf24" opacity="0.8">
+    <circle cx="270" cy="340" r="2"/>
+    <circle cx="250" cy="310" r="1.5"/>
+    <circle cx="510" cy="270" r="2"/>
+    <circle cx="490" cy="230" r="2.5"/>
+    <circle cx="530" cy="200" r="1.5"/>
+  </g>
+
+  <!-- Badge Pill -->
+  <rect x="36" y="32" width="138" height="24" rx="4" fill="#1b1216" fill-opacity="0.85" stroke="#ef4444" stroke-width="1"/>
+  <text x="46" y="48" fill="#f87171" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5">ARMS &amp; COMBAT</text>
+
+  <!-- Game Title -->
+  <text x="36" y="92" fill="#ffffff" font-family="'Inter', system-ui, sans-serif" font-size="32" font-weight="900" letter-spacing="2">MECH ASSAULT</text>
+  <text x="38" y="112" fill="#fca5a5" font-family="'Inter', system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="3">FRONTLINE // TITAN CLASS COMBAT</text>
+
+  <!-- Titan Status HUD -->
+  <g transform="translate(630, 36)" opacity="0.85">
+    <rect width="134" height="46" rx="4" fill="#140e13" stroke="#2e1620" stroke-width="1"/>
+    <text x="12" y="18" fill="#ef4444" font-family="'Inter', monospace" font-size="9" letter-spacing="1">TITAN CORE</text>
+    <text x="12" y="34" fill="#38bdf8" font-family="'Inter', monospace" font-size="13" font-weight="800">SYSTEM NOMINAL</text>
+    <circle cx="116" cy="22" r="5" fill="#38bdf8" filter="url(#mechGlow)"/>
+  </g>
+
+  <!-- Framing Accents -->
+  <path d="M 20 30 L 20 20 L 30 20" stroke="#ef4444" stroke-width="2" fill="none"/>
+  <path d="M 780 30 L 780 20 L 770 20" stroke="#ef4444" stroke-width="2" fill="none"/>
+  <path d="M 20 420 L 20 430 L 30 430" stroke="#ef4444" stroke-width="2" fill="none"/>
+  <path d="M 780 420 L 780 430 L 770 430" stroke="#ef4444" stroke-width="2" fill="none"/>
+</svg>

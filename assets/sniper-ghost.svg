@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="desertStorm" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0a0808"/>
+      <stop offset="40%" stop-color="#1f1812"/>
+      <stop offset="80%" stop-color="#3d2c1c"/>
+      <stop offset="100%" stop-color="#1f140a"/>
+    </linearGradient>
+    <radialGradient id="opticLens" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#022c22" stop-opacity="0.8"/>
+      <stop offset="70%" stop-color="#064e3b" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#02140e" stop-opacity="0.95"/>
+    </radialGradient>
+    <filter id="sniperGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Desert Storm Background -->
+  <rect width="800" height="450" fill="url(#desertStorm)"/>
+
+  <!-- Distant Ruined Towers / Radar Mast in Haze -->
+  <polygon points="120,320 135,180 155,180 170,320" fill="#140f09" opacity="0.6"/>
+  <line x1="145" y1="180" x2="145" y2="140" stroke="#241b12" stroke-width="2"/>
+  <polygon points="620,320 640,210 670,210 690,320" fill="#140f09" opacity="0.5"/>
+
+  <!-- Swirling Sandstorm Dust Veils -->
+  <path d="M 0 260 Q 200 230 400 270 T 800 240 L 800 450 L 0 450 Z" fill="#291a0c" opacity="0.4"/>
+  <path d="M 0 320 Q 300 290 600 330 T 800 300 L 800 450 L 0 450 Z" fill="#170f07" opacity="0.7"/>
+
+  <!-- Sniper Long-Barrel Rifle Silhouette (Bottom Foreground) -->
+  <g transform="translate(40, 310)">
+    <!-- Silenced .50 Cal Barrel & Muzzle Brake -->
+    <rect x="0" y="30" width="380" height="14" rx="2" fill="#0c0a09" stroke="#292524" stroke-width="1.5"/>
+    <!-- Muzzle Brake Baffles -->
+    <rect x="360" y="24" width="28" height="26" rx="3" fill="#1c1917" stroke="#44403c" stroke-width="1"/>
+    <line x1="368" y1="26" x2="368" y2="48" stroke="#000000" stroke-width="3"/>
+    <line x1="378" y1="26" x2="378" y2="48" stroke="#000000" stroke-width="3"/>
+    <!-- Bipod folded/extended -->
+    <line x1="300" y1="44" x2="330" y2="110" stroke="#1c1917" stroke-width="5"/>
+    <line x1="300" y1="44" x2="350" y2="110" stroke="#292524" stroke-width="4"/>
+    <!-- Heavy Receiver / Scope Mount Base -->
+    <rect x="60" y="15" width="160" height="35" rx="3" fill="#171412" stroke="#292524" stroke-width="1.5"/>
+  </g>
+
+  <!-- Giant Sniper Optic / Reticle (Circular Lens Center Right) -->
+  <g transform="translate(520, 225)">
+    <!-- Outer Scope Housing (Dark Metallic Ring) -->
+    <circle cx="0" cy="0" r="160" fill="none" stroke="#1c1917" stroke-width="26"/>
+    <circle cx="0" cy="0" r="147" fill="none" stroke="#ef4444" stroke-width="1.5" opacity="0.6"/>
+
+    <!-- Lens Thermal/Night Greenish Atmosphere -->
+    <circle cx="0" cy="0" r="146" fill="url(#opticLens)"/>
+
+    <!-- Lens Glare Reflection Arc -->
+    <path d="M -100 -90 A 130 130 0 0 1 100 -90" stroke="#34d399" stroke-width="2" fill="none" opacity="0.3"/>
+
+    <!-- Reticle Crosshairs (German Mil-Dot / Horus Style) -->
+    <line x1="-140" y1="0" x2="140" y2="0" stroke="#10b981" stroke-width="1.5" filter="url(#sniperGlow)"/>
+    <line x1="0" y1="-140" x2="0" y2="140" stroke="#10b981" stroke-width="1.5" filter="url(#sniperGlow)"/>
+
+    <!-- Center Precision Aiming Dot -->
+    <circle cx="0" cy="0" r="2.5" fill="#ef4444" filter="url(#sniperGlow)"/>
+    <circle cx="0" cy="0" r="14" stroke="#ef4444" stroke-width="1" fill="none" opacity="0.7"/>
+
+    <!-- Mil-Dot Hash Marks (Horizontal) -->
+    <circle cx="-30" cy="0" r="2" fill="#10b981"/>
+    <circle cx="-60" cy="0" r="2" fill="#10b981"/>
+    <circle cx="-90" cy="0" r="2.5" fill="#10b981"/>
+    <circle cx="30" cy="0" r="2" fill="#10b981"/>
+    <circle cx="60" cy="0" r="2" fill="#10b981"/>
+    <circle cx="90" cy="0" r="2.5" fill="#10b981"/>
+
+    <!-- Bullet Drop Compensator Marks (Vertical Ladder) -->
+    <line x1="-8" y1="25" x2="8" y2="25" stroke="#10b981" stroke-width="1"/>
+    <text x="14" y="28" fill="#10b981" font-family="'Inter', monospace" font-size="8">200</text>
+    <line x1="-12" y1="50" x2="12" y2="50" stroke="#10b981" stroke-width="1"/>
+    <text x="18" y="53" fill="#10b981" font-family="'Inter', monospace" font-size="8">400</text>
+    <line x1="-18" y1="75" x2="18" y2="75" stroke="#10b981" stroke-width="1"/>
+    <text x="24" y="78" fill="#10b981" font-family="'Inter', monospace" font-size="8">600</text>
+    <line x1="-24" y1="100" x2="24" y2="100" stroke="#10b981" stroke-width="1"/>
+    <text x="30" y="103" fill="#10b981" font-family="'Inter', monospace" font-size="8">850</text>
+
+    <!-- Rangefinder Digital Telemetry Inside Optic -->
+    <text x="-120" y="-105" fill="#34d399" font-family="'Inter', monospace" font-size="10" font-weight="700">RNG: 852 M</text>
+    <text x="-120" y="-90" fill="#34d399" font-family="'Inter', monospace" font-size="10" font-weight="700">WIND: 14 KT &gt;&gt;</text>
+    <text x="50" y="-105" fill="#ef4444" font-family="'Inter', monospace" font-size="10" font-weight="800">ELV: +1.4 MIL</text>
+    <text x="50" y="-90" fill="#ef4444" font-family="'Inter', monospace" font-size="10" font-weight="800">CAL: .50 BMG</text>
+  </g>
+
+  <!-- Badge Pill -->
+  <rect x="36" y="32" width="138" height="24" rx="4" fill="#1a1111" fill-opacity="0.85" stroke="#ef4444" stroke-width="1"/>
+  <text x="46" y="48" fill="#f87171" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5">ARMS &amp; COMBAT</text>
+
+  <!-- Game Title -->
+  <text x="36" y="92" fill="#ffffff" font-family="'Inter', system-ui, sans-serif" font-size="32" font-weight="900" letter-spacing="2">SNIPER GHOST</text>
+  <text x="38" y="112" fill="#fbbf24" font-family="'Inter', system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="3">DESERT STORM // LONG RANGE INTERDICTION</text>
+
+  <!-- Telemetry Badge Top Right -->
+  <g transform="translate(630, 36)" opacity="0.85">
+    <rect width="134" height="46" rx="4" fill="#140f0c" stroke="#2c1a14" stroke-width="1"/>
+    <text x="12" y="18" fill="#f59e0b" font-family="'Inter', monospace" font-size="9" letter-spacing="1">ENGAGEMENT</text>
+    <text x="12" y="34" fill="#ef4444" font-family="'Inter', monospace" font-size="13" font-weight="800">TARGET LOCKED</text>
+    <circle cx="116" cy="22" r="5" fill="#ef4444" filter="url(#sniperGlow)"/>
+  </g>
+
+  <!-- Framing Accents -->
+  <path d="M 20 30 L 20 20 L 30 20" stroke="#ef4444" stroke-width="2" fill="none"/>
+  <path d="M 780 30 L 780 20 L 770 20" stroke="#ef4444" stroke-width="2" fill="none"/>
+  <path d="M 20 420 L 20 430 L 30 430" stroke="#ef4444" stroke-width="2" fill="none"/>
+  <path d="M 780 420 L 780 430 L 770 430" stroke="#ef4444" stroke-width="2" fill="none"/>
+</svg>

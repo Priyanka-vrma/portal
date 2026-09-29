@@ -1,0 +1,2067 @@
+/* ==========================================================================
+   THE HAUNTED ARCADE - Design Language & Style System
+   Theme: Playful, Clever & Spooky "Haunted Arcade"
+   Palette: Deep Midnight Blues, Glowing Ectoplasm Greens, Spectral Purples, Pumpkin Amber
+   Typography: Creepster (Spooky Retro Arcade) & Fredoka (Playful Rounded UI)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Fredoka:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+:root {
+  /* Deep Midnight Blues & Crypt Stones */
+  --bg-midnight: #070a14;
+  --bg-crypt: #0b1120;
+  --bg-tombstone: #121b2d;
+  --bg-tombstone-surface: #162035;
+  --bg-card: rgba(18, 27, 45, 0.85);
+  --bg-card-hover: rgba(24, 36, 60, 0.95);
+  --bg-glass: rgba(11, 17, 32, 0.82);
+  --bg-hud: rgba(7, 10, 20, 0.96);
+
+  /* Glowing Ectoplasm Greens */
+  --ecto-green: #00ff88;
+  --ecto-slime: #39ff14;
+  --ecto-emerald: #10b981;
+  --ecto-glow: rgba(0, 255, 136, 0.35);
+  --ecto-glow-strong: rgba(0, 255, 136, 0.65);
+
+  /* Spectral Purples */
+  --spectral-purple: #a855f7;
+  --spectral-lilac: #c084fc;
+  --spectral-magenta: #d946ef;
+  --spectral-glow: rgba(168, 85, 247, 0.35);
+  --spectral-glow-strong: rgba(168, 85, 247, 0.65);
+
+  /* Eerie Pumpkin Amber & Blood Crimson */
+  --pumpkin-amber: #f59e0b;
+  --pumpkin-glow: rgba(245, 158, 11, 0.35);
+  --curse-crimson: #ef4444;
+  --curse-crimson-glow: rgba(239, 68, 68, 0.35);
+
+  /* Typography Colors */
+  --text-white: #f8fafc;
+  --text-primary: #e2e8f0;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-ghost: #8ca3c2;
+
+  /* Typography Families */
+  --font-spooky: 'Creepster', cursive;
+  --font-playful: 'Fredoka', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Tombstone Carved Borders & Radii */
+  --tombstone-radius: 44px 44px 18px 18px;
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+
+  /* Tombstone Stone Borders */
+  --stone-border: 2px solid rgba(168, 85, 247, 0.22);
+  --stone-border-glow: 2px solid var(--ecto-green);
+  --border-hairline: rgba(255, 255, 255, 0.08);
+
+  /* Neon Spectral Shadows */
+  --shadow-tombstone: 0 14px 30px -4px rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(255, 255, 255, 0.06);
+  --shadow-tombstone-hover: 0 22px 48px -6px rgba(0, 0, 0, 0.9), 0 0 25px var(--ecto-glow-strong), 0 0 45px var(--spectral-glow);
+  --shadow-neon-green: 0 0 20px rgba(0, 255, 136, 0.5);
+  --shadow-neon-purple: 0 0 20px rgba(168, 85, 247, 0.5);
+
+  /* Layout */
+  --container-max: 1320px;
+  --theater-max: 1260px;
+}
+
+/* ==========================================================================
+   CSS Reset & Base Rules
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-playful);
+  background-color: var(--bg-midnight);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body.haunted-theme, body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at 50% 0%, #152238 0%, #0d1424 45%, #070a14 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  position: relative;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+button {
+  font-family: var(--font-playful);
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+input {
+  font-family: var(--font-playful);
+  outline: none;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   Ambient Glows & Fog
+   ========================================================================== */
+.ambient-glow-top {
+  position: fixed;
+  top: -180px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1100px;
+  height: 520px;
+  background: radial-gradient(ellipse at center, rgba(0, 255, 136, 0.12) 0%, rgba(168, 85, 247, 0.16) 45%, transparent 70%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambient-noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+  background-size: 26px 26px;
+  pointer-events: none;
+  opacity: 0.7;
+  z-index: 0;
+}
+
+.crypt-fog {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(to top, rgba(7, 10, 20, 0.85) 0%, rgba(11, 17, 32, 0.3) 50%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ==========================================================================
+   Cute Floating Background Ghosts & Animations
+   ========================================================================== */
+.haunted-background {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bg-ghost {
+  position: absolute;
+  width: 76px;
+  height: 92px;
+  opacity: 0.38;
+  filter: drop-shadow(0 0 14px rgba(0, 255, 136, 0.3));
+  transition: opacity 0.3s ease;
+}
+
+.floating-ghost-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ghost-shape {
+  fill: rgba(230, 255, 245, 0.95);
+  stroke: var(--ecto-green);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.4));
+}
+
+.ghost-shape.purple-spirit {
+  fill: rgba(245, 235, 255, 0.95);
+  stroke: var(--spectral-purple);
+  filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.45));
+}
+
+.ghost-shape.amber-spirit {
+  fill: rgba(255, 250, 235, 0.95);
+  stroke: var(--pumpkin-amber);
+  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.45));
+}
+
+.ghost-eye {
+  fill: #070a14;
+}
+
+.ghost-pupil-white {
+  fill: #ffffff;
+}
+
+.ghost-blush {
+  fill: #ff70a6;
+  opacity: 0.7;
+}
+
+.ghost-mouth-smile {
+  stroke: #070a14;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  fill: none;
+}
+
+.ghost-mouth-gasp {
+  fill: #070a14;
+}
+
+/* Ghost Float Animations & Staggered Paths */
+.ghost-bob-1 {
+  top: 12%;
+  left: 4%;
+  animation: floatDrift1 9s ease-in-out infinite alternate;
+}
+
+.ghost-bob-2 {
+  top: 18%;
+  right: 6%;
+  animation: floatDrift2 11s ease-in-out infinite alternate;
+}
+
+.ghost-bob-3 {
+  top: 55%;
+  right: 8%;
+  width: 65px;
+  height: 78px;
+  animation: floatDrift3 10s ease-in-out infinite alternate;
+}
+
+.ghost-bob-4 {
+  bottom: 12%;
+  left: 7%;
+  width: 82px;
+  height: 98px;
+  animation: floatDrift4 12s ease-in-out infinite alternate;
+}
+
+@keyframes floatDrift1 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(25px, -35px) rotate(6deg); }
+  100% { transform: translate(-15px, 20px) rotate(-4deg); }
+}
+
+@keyframes floatDrift2 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-30px, -40px) rotate(-8deg); }
+  100% { transform: translate(20px, 15px) rotate(5deg); }
+}
+
+@keyframes floatDrift3 {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate(-25px, 30px) scale(1.05) rotate(7deg); }
+  100% { transform: translate(15px, -25px) scale(0.95) rotate(-5deg); }
+}
+
+@keyframes floatDrift4 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(35px, -25px) rotate(-6deg); }
+  100% { transform: translate(-20px, -45px) rotate(4deg); }
+}
+
+/* Spectral Wisps */
+.spectral-wisp {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(16px);
+  opacity: 0.45;
+}
+
+.wisp-1 {
+  width: 90px;
+  height: 90px;
+  background: var(--ecto-green);
+  bottom: 25%;
+  left: 18%;
+  animation: wispRise 14s infinite ease-in-out;
+}
+
+.wisp-2 {
+  width: 120px;
+  height: 120px;
+  background: var(--spectral-purple);
+  bottom: 30%;
+  right: 22%;
+  animation: wispRise 16s infinite ease-in-out 3s;
+}
+
+.wisp-3 {
+  width: 70px;
+  height: 70px;
+  background: var(--pumpkin-amber);
+  top: 35%;
+  left: 45%;
+  animation: wispRise 12s infinite ease-in-out 6s;
+}
+
+.wisp-4 {
+  width: 80px;
+  height: 80px;
+  background: var(--ecto-slime);
+  bottom: 10%;
+  right: 10%;
+  animation: wispRise 15s infinite ease-in-out 1s;
+}
+
+@keyframes wispRise {
+  0% { transform: translateY(0) scale(0.8); opacity: 0.1; }
+  50% { transform: translateY(-70px) scale(1.2); opacity: 0.5; }
+  100% { transform: translateY(-140px) scale(0.9); opacity: 0; }
+}
+
+/* ==========================================================================
+   Navigation Bar (Haunted Arcade Header)
+   ========================================================================== */
+.portal-nav {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 2px solid rgba(168, 85, 247, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+}
+
+.portal-nav-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand .brand-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-ghost-emblem {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, #131c30, #0a0e1a);
+  border: 1.5px solid var(--ecto-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 16px var(--ecto-glow);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.brand-link:hover .brand-ghost-emblem {
+  transform: rotate(-8deg) scale(1.1);
+  box-shadow: 0 0 24px var(--ecto-glow-strong);
+}
+
+.brand-svg {
+  width: 28px;
+  height: 28px;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-family: var(--font-spooky);
+  font-size: 1.6rem;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  text-shadow: 0 0 10px var(--ecto-glow);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1;
+}
+
+.brand-name span {
+  color: var(--ecto-green);
+  text-shadow: 0 0 14px var(--ecto-green);
+}
+
+.brand-edition {
+  font-size: 0.72rem;
+  font-family: var(--font-playful);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--spectral-lilac);
+  margin-top: 2px;
+}
+
+.nav-stats {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.nav-status-dot.ecto-pulse {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ecto-green);
+  box-shadow: 0 0 12px var(--ecto-green);
+  animation: ectoDotPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes ectoDotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 12px var(--ecto-green); }
+  50% { opacity: 0.45; transform: scale(0.8); box-shadow: 0 0 4px var(--ecto-green); }
+}
+
+.nav-badge-pill {
+  padding: 5px 12px;
+  font-size: 0.76rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--ecto-green);
+  background: rgba(0, 255, 136, 0.1);
+  border: 1px solid rgba(0, 255, 136, 0.35);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 0 12px rgba(0, 255, 136, 0.2);
+}
+
+/* ==========================================================================
+   Hero Header Section (Haunted Arcade)
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 50px 24px 25px;
+  z-index: 1;
+}
+
+.hero-meta-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  font-family: var(--font-playful);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--ecto-green);
+  background: rgba(0, 255, 136, 0.1);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  border-radius: var(--radius-pill);
+  margin-bottom: 20px;
+  box-shadow: 0 0 16px var(--ecto-glow);
+}
+
+.hero-badge-ghost {
+  font-size: 1rem;
+  animation: ghostWiggle 2s infinite ease-in-out;
+}
+
+@keyframes ghostWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+.hero-title {
+  font-family: var(--font-spooky);
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.4), 0 4px 10px rgba(0, 0, 0, 0.8);
+  margin-bottom: 16px;
+}
+
+.hero-title-highlight {
+  font-family: var(--font-playful);
+  font-size: clamp(1.2rem, 2.5vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: linear-gradient(135deg, #00ff88 0%, #39ff14 40%, #c084fc 80%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.hero-description {
+  max-width: 740px;
+  font-size: 1.08rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 34px;
+  font-weight: 400;
+}
+
+/* Hero Telemetry Stats Bar */
+.hero-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 18px 24px;
+  background: linear-gradient(180deg, rgba(22, 32, 53, 0.85) 0%, rgba(14, 21, 35, 0.95) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 2px solid rgba(168, 85, 247, 0.25);
+  border-radius: var(--radius-lg);
+  margin-bottom: 36px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.hero-stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.stat-metric {
+  font-family: var(--font-mono);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--ecto-green);
+  text-shadow: 0 0 12px rgba(0, 255, 136, 0.4);
+}
+
+.stat-label {
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Filter Pills & Search Controls Bar
+   ========================================================================== */
+.controls-bar {
+  max-width: var(--container-max);
+  margin: 0 auto 20px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  z-index: 2;
+  position: relative;
+}
+
+/* Category Filter Pills */
+.filter-tabs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(14, 20, 34, 0.85);
+  padding: 6px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid rgba(168, 85, 247, 0.25);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.filter-pill .pill-icon {
+  font-size: 1rem;
+}
+
+.filter-pill:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.filter-pill.active {
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.22), rgba(168, 85, 247, 0.28));
+  color: #ffffff;
+  border-color: var(--ecto-green);
+  box-shadow: 0 0 18px var(--ecto-glow);
+}
+
+.filter-pill.active[data-category="racing"] {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(192, 132, 252, 0.3));
+  border-color: var(--spectral-purple);
+  box-shadow: 0 0 18px var(--spectral-glow);
+}
+
+.filter-pill.active[data-category="combat"] {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(245, 158, 11, 0.25));
+  border-color: var(--curse-crimson);
+  box-shadow: 0 0 18px var(--curse-crimson-glow);
+}
+
+.pill-count {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-muted);
+}
+
+.filter-pill.active .pill-count {
+  background: var(--ecto-green);
+  color: #070a14;
+}
+
+/* Spooky Crystal Ball Search Input */
+.search-wrapper {
+  position: relative;
+  min-width: 300px;
+  flex: 0 1 360px;
+}
+
+.search-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 44px 0 46px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: #ffffff;
+  background: rgba(14, 20, 34, 0.85);
+  border: 1.5px solid rgba(168, 85, 247, 0.3);
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: all 0.25s ease;
+}
+
+.search-input:focus {
+  border-color: var(--ecto-green);
+  box-shadow: 0 0 20px var(--ecto-glow-strong);
+  background: rgba(18, 26, 44, 0.95);
+}
+
+.search-input::placeholder {
+  color: var(--text-ghost);
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  fill: var(--ecto-green);
+  pointer-events: none;
+  filter: drop-shadow(0 0 6px var(--ecto-glow));
+}
+
+.search-shortcut-badge {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-ghost);
+  padding: 2px 7px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-hairline);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Catalog Header & Meta Row
+   ========================================================================== */
+.catalog-meta-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 0 4px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.catalog-header-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.catalog-title {
+  font-family: var(--font-spooky);
+  font-size: 2rem;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+}
+
+.catalog-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-ghost);
+  font-weight: 500;
+}
+
+.games-count, #games-count {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--ecto-green);
+  background: rgba(0, 255, 136, 0.1);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(0, 255, 136, 0.25);
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.15);
+}
+
+/* ==========================================================================
+   TOMBSTONE CARD GRID & STYLING
+   Curved tops (44px 44px 18px 18px), carved stone textures, jiggle animation
+   ========================================================================== */
+.games-section {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px 80px;
+  flex: 1;
+  position: relative;
+  z-index: 2;
+}
+
+#games-grid, .tombstone-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 32px;
+}
+
+/* Tombstone Card */
+.game-card {
+  position: relative;
+  background: linear-gradient(180deg, #172136 0%, #111828 40%, #0a0f1b 100%);
+  border: 2px solid rgba(168, 85, 247, 0.28);
+  border-radius: var(--tombstone-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-tombstone), inset 0 2px 4px rgba(255, 255, 255, 0.08), inset 0 -3px 8px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+}
+
+/* Tombstone Top Stone Arch Accent */
+.game-card::before {
+  content: "⚰️ R.I.P ⚰️";
+  display: block;
+  text-align: center;
+  padding: 8px 0 6px;
+  font-family: var(--font-spooky);
+  font-size: 0.95rem;
+  letter-spacing: 0.15em;
+  color: rgba(168, 85, 247, 0.6);
+  border-bottom: 1px dashed rgba(168, 85, 247, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+  transition: color 0.3s ease;
+}
+
+.game-card:hover::before {
+  color: var(--ecto-green);
+  text-shadow: 0 0 8px var(--ecto-green);
+}
+
+/* Playful Jiggle Hover Effect */
+@keyframes jiggle {
+  0% { transform: translateY(-8px) rotate(0deg) scale(1.02); }
+  25% { transform: translateY(-10px) rotate(-1.5deg) scale(1.02); }
+  50% { transform: translateY(-10px) rotate(1.5deg) scale(1.02); }
+  75% { transform: translateY(-8px) rotate(-1deg) scale(1.02); }
+  100% { transform: translateY(-8px) rotate(0deg) scale(1.02); }
+}
+
+.game-card:hover {
+  animation: jiggle 0.65s ease-in-out infinite alternate;
+  border-color: var(--ecto-green);
+  box-shadow: var(--shadow-tombstone-hover);
+}
+
+.game-card.racing-card:hover {
+  border-color: var(--spectral-purple);
+  box-shadow: 0 22px 48px -6px rgba(0, 0, 0, 0.9), 0 0 25px var(--spectral-glow-strong), 0 0 45px var(--ecto-glow);
+}
+
+.game-card.combat-card:hover {
+  border-color: var(--curse-crimson);
+  box-shadow: 0 22px 48px -6px rgba(0, 0, 0, 0.9), 0 0 25px var(--curse-crimson-glow), 0 0 45px var(--spectral-glow);
+}
+
+/* Card Poster Media */
+.card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #070a12;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+}
+
+.game-card:hover .card-thumb {
+  transform: scale(1.07);
+  filter: contrast(1.08) brightness(1.05);
+}
+
+/* Badges on Card Top */
+.card-badge-wrap {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.category-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  font-family: var(--font-playful);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: var(--radius-xs);
+  backdrop-filter: blur(8px);
+}
+
+.badge-racing, .category-pill.racing {
+  background: rgba(168, 85, 247, 0.35);
+  color: #e9d5ff;
+  border: 1px solid rgba(168, 85, 247, 0.6);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+}
+
+.badge-combat, .category-pill.combat {
+  background: rgba(239, 68, 68, 0.35);
+  color: #fecaca;
+  border: 1px solid rgba(239, 68, 68, 0.6);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+}
+
+.rating-pill {
+  background: rgba(7, 10, 20, 0.9);
+  color: #fef08a;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(254, 240, 138, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+/* Card Hover Overlay & Play Action Button */
+.card-hover-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  background: rgba(7, 10, 20, 0.6);
+  backdrop-filter: blur(4px);
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+
+.hover-play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 26px;
+  border-radius: var(--radius-pill);
+  color: #070a14;
+  background: linear-gradient(135deg, var(--ecto-green) 0%, var(--ecto-slime) 100%) !important;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transform: scale(0.85);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  box-shadow: 0 0 25px var(--ecto-green);
+}
+
+.game-card:hover .card-hover-overlay {
+  opacity: 1;
+}
+
+.game-card:hover .hover-play-btn {
+  transform: scale(1);
+}
+
+/* Card Body Content */
+.card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-header-row {
+  margin-bottom: 6px;
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  line-height: 1.25;
+  transition: color 0.2s ease;
+}
+
+.game-card:hover .card-title {
+  color: var(--ecto-green);
+}
+
+.card-subtitle {
+  font-size: 0.78rem;
+  font-family: var(--font-playful);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--spectral-lilac);
+  margin-bottom: 10px;
+}
+
+.card-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+
+/* Card Physics Specs Pills */
+.card-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.spec-pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-muted);
+}
+
+.racing-card .spec-pill .spec-val {
+  color: var(--spectral-lilac);
+  font-weight: 600;
+}
+
+.combat-card .spec-pill .spec-val {
+  color: #f87171;
+  font-weight: 600;
+}
+
+/* Tags Pills */
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.tag-pill {
+  font-family: var(--font-playful);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  background: rgba(168, 85, 247, 0.1);
+  color: var(--spectral-lilac);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  transition: all 0.2s ease;
+}
+
+.tag-pill:hover {
+  background: rgba(0, 255, 136, 0.15);
+  color: var(--ecto-green);
+  border-color: var(--ecto-green);
+}
+
+/* Card Footer & Summon Game Button */
+.card-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.author-label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* "Summon Game" Button */
+.btn-launch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-pill);
+  color: #070a14;
+  background: linear-gradient(135deg, var(--ecto-green) 0%, var(--ecto-slime) 100%);
+  border: 1px solid var(--ecto-green);
+  box-shadow: 0 0 14px var(--ecto-glow);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-launch:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 0 24px var(--ecto-glow-strong);
+  color: #000000;
+}
+
+.game-card:hover .btn-launch {
+  box-shadow: 0 0 20px var(--ecto-glow-strong);
+}
+
+/* Empty State */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 1.5rem;
+  background: rgba(18, 27, 45, 0.85);
+  border: 2px dashed rgba(168, 85, 247, 0.3);
+  border-radius: var(--radius-lg);
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Portal Footer (Haunted Lore)
+   ========================================================================== */
+.portal-footer {
+  margin-top: auto;
+  background: #060912;
+  border-top: 2px solid rgba(168, 85, 247, 0.22);
+  position: relative;
+  z-index: 2;
+}
+
+.footer-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 50px 24px 30px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.footer-brand-column {
+  max-width: 480px;
+}
+
+.footer-tagline {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+.footer-lore-note {
+  margin-top: 14px;
+  padding: 8px 14px;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  color: #fde68a;
+}
+
+.footer-badges {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: var(--radius-pill);
+}
+
+.badge-icon-ghost {
+  font-size: 1rem;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-link:hover {
+  color: var(--ecto-green);
+}
+
+/* ==========================================================================
+   FUNNY CSS-ANIMATED GHOST CHASING LOADING BAR (play.html)
+   ========================================================================== */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #10182b 0%, #080d19 60%, #03050a 100%);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+.loading-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-content {
+  max-width: 620px;
+  width: 90%;
+  text-align: center;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loader-arcade-badge {
+  font-family: var(--font-spooky);
+  font-size: 1.4rem;
+  letter-spacing: 0.12em;
+  color: var(--ecto-green);
+  text-shadow: 0 0 12px var(--ecto-green);
+  margin-bottom: 6px;
+}
+
+.loader-curse-title {
+  font-family: var(--font-playful);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  margin-bottom: 24px;
+}
+
+/* Chase Arena Track */
+.loader-chase-arena {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  margin-bottom: 16px;
+  overflow: visible;
+}
+
+/* Target Soul Orb Skipping Ahead */
+.chase-target-soul {
+  position: absolute;
+  top: 30px;
+  right: 15%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: soulSkipAhead 2.4s ease-in-out infinite alternate;
+}
+
+.soul-core {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, var(--ecto-slime) 60%, var(--ecto-green) 100%);
+  box-shadow: 0 0 20px var(--ecto-green), 0 0 35px var(--ecto-slime);
+}
+
+.soul-aura {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px dashed var(--ecto-slime);
+  animation: soulAuraSpin 3s linear infinite;
+}
+
+.soul-icon {
+  position: relative;
+  z-index: 2;
+  font-size: 1.1rem;
+}
+
+@keyframes soulSkipAhead {
+  0% { transform: translateX(0) translateY(0) scale(1); }
+  30% { transform: translateX(30px) translateY(-18px) scale(1.1); }
+  60% { transform: translateX(10px) translateY(12px) scale(0.95); }
+  100% { transform: translateX(45px) translateY(-10px) scale(1.15); }
+}
+
+@keyframes soulAuraSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Funny Cute Chasing Ghost */
+.chase-ghost {
+  position: absolute;
+  top: 15px;
+  left: 20%;
+  width: 78px;
+  height: 94px;
+  animation: ghostFranticChase 2.4s ease-in-out infinite alternate;
+}
+
+.ghost-bubble {
+  position: absolute;
+  top: -26px;
+  left: -20px;
+  background: #ffffff;
+  color: #070a14;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  animation: bubbleBob 1.2s infinite ease-in-out;
+}
+
+.ghost-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 30px;
+  border-width: 5px 5px 0 5px;
+  border-style: solid;
+  border-color: #ffffff transparent transparent transparent;
+}
+
+@keyframes bubbleBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.chase-ghost-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 14px var(--ecto-glow-strong));
+}
+
+.ghost-chase-body {
+  fill: #ffffff;
+  stroke: var(--ecto-green);
+  stroke-width: 2;
+  animation: ghostTailWiggle 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes ghostTailWiggle {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-3deg); }
+}
+
+.chase-eye {
+  fill: #070a14;
+}
+
+.chase-pupil {
+  fill: #ffffff;
+}
+
+.chase-mouth {
+  fill: #070a14;
+  animation: mouthGasp 0.5s infinite alternate;
+}
+
+@keyframes mouthGasp {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15); }
+}
+
+.chase-arm-l {
+  stroke: #ffffff;
+  stroke-width: 4;
+  stroke-linecap: round;
+  fill: none;
+  animation: flailLeft 0.35s infinite alternate;
+}
+
+.chase-arm-r {
+  stroke: #ffffff;
+  stroke-width: 4;
+  stroke-linecap: round;
+  fill: none;
+  animation: flailRight 0.35s infinite alternate;
+}
+
+@keyframes flailLeft {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-6px) rotate(-15deg); }
+}
+
+@keyframes flailRight {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-6px) rotate(15deg); }
+}
+
+@keyframes ghostFranticChase {
+  0% { transform: translateX(0) translateY(0) rotate(2deg); }
+  25% { transform: translateX(25px) translateY(-14px) rotate(-3deg); }
+  50% { transform: translateX(45px) translateY(8px) rotate(4deg); }
+  75% { transform: translateX(20px) translateY(-12px) rotate(-2deg); }
+  100% { transform: translateX(50px) translateY(0) rotate(3deg); }
+}
+
+/* Ghost Dust Particles */
+.chase-dust-trail {
+  position: absolute;
+  bottom: 10px;
+  left: -15px;
+  display: flex;
+  gap: 5px;
+}
+
+.dust-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ecto-green);
+  opacity: 0.7;
+  animation: dustPuff 0.6s infinite ease-out;
+}
+
+.dot-2 { animation-delay: 0.2s; }
+.dot-3 { animation-delay: 0.4s; }
+
+@keyframes dustPuff {
+  0% { transform: scale(1) translateX(0); opacity: 0.8; }
+  100% { transform: scale(0.2) translateX(-18px); opacity: 0; }
+}
+
+/* Ectoplasmic Loading Bar */
+.loading-bar-wrapper {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.loading-bar-track {
+  width: 100%;
+  height: 18px;
+  background: rgba(7, 10, 20, 0.8);
+  border: 2px solid rgba(168, 85, 247, 0.4);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.loading-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00ff88 0%, #39ff14 60%, #c084fc 100%);
+  border-radius: var(--radius-pill);
+  position: relative;
+  box-shadow: 0 0 16px var(--ecto-green);
+  animation: ectoFillProgress 1.8s cubic-bezier(0.2, 0.8, 0.4, 1) forwards;
+}
+
+@keyframes ectoFillProgress {
+  0% { width: 0%; }
+  35% { width: 45%; }
+  70% { width: 80%; }
+  100% { width: 100%; }
+}
+
+.loading-bar-glow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 100%;
+  background: #ffffff;
+  filter: blur(4px);
+  opacity: 0.8;
+}
+
+.loading-status-text {
+  font-family: var(--font-playful);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ecto-green);
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+  text-shadow: 0 0 10px var(--ecto-glow);
+}
+
+.loading-status-sub {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   HAUNTED ARCADE CABINET RUNNER (play.html)
+   ========================================================================== */
+.play-body {
+  background: #05070f;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Spooky HUD Top Bar */
+.hud-nav {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 68px;
+  background: var(--bg-hud);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 2px solid rgba(168, 85, 247, 0.28);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+}
+
+.hud-nav-container {
+  max-width: var(--theater-max);
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.hud-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Banish to Crypt Button */
+.hud-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgba(168, 85, 247, 0.15);
+  border: 1.5px solid rgba(168, 85, 247, 0.4);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.2);
+  transition: all 0.2s ease;
+}
+
+.hud-back-btn:hover {
+  background: rgba(168, 85, 247, 0.3);
+  border-color: var(--spectral-purple);
+  box-shadow: 0 0 18px var(--spectral-glow);
+  transform: translateY(-1px);
+}
+
+.hud-back-icon {
+  font-size: 1.05rem;
+}
+
+.hud-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hud-game-title {
+  font-family: var(--font-playful);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.hud-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hud-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 0.82rem;
+  font-family: var(--font-playful);
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: var(--radius-pill);
+  transition: all 0.2s ease;
+}
+
+.hud-action-btn:hover {
+  background: rgba(0, 255, 136, 0.15);
+  border-color: var(--ecto-green);
+  color: #ffffff;
+  box-shadow: 0 0 14px var(--ecto-glow);
+}
+
+.hud-action-btn.active {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: var(--pumpkin-amber);
+  color: #fef08a;
+  box-shadow: 0 0 14px var(--pumpkin-glow);
+}
+
+.hud-action-btn.muted {
+  color: var(--text-muted);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================================
+   ARCADE CABINET FRAME & CRT BEZEL
+   ========================================================================== */
+.theater-container {
+  max-width: var(--theater-max);
+  margin: 24px auto 0;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.arcade-cabinet-frame {
+  position: relative;
+  background: linear-gradient(180deg, #1b253b 0%, #121929 35%, #090c14 100%);
+  border: 3px solid rgba(168, 85, 247, 0.35);
+  border-radius: 24px;
+  padding: 14px 14px 16px;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(168, 85, 247, 0.2), inset 0 2px 4px rgba(255, 255, 255, 0.15);
+}
+
+/* Marquee Header */
+.arcade-cabinet-marquee {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px 12px;
+  background: linear-gradient(90deg, #090e18 0%, #172338 50%, #090e18 100%);
+  border-radius: 14px 14px 4px 4px;
+  border-bottom: 2px solid rgba(0, 255, 136, 0.3);
+  margin-bottom: 12px;
+}
+
+.marquee-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.marquee-skull {
+  font-size: 1.1rem;
+}
+
+.marquee-text {
+  font-family: var(--font-spooky);
+  font-size: 1.35rem;
+  letter-spacing: 0.12em;
+  color: var(--ecto-green);
+  text-shadow: 0 0 12px var(--ecto-green);
+}
+
+.marquee-screw {
+  color: var(--spectral-lilac);
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+/* CRT Screen Bezel & Canvas */
+#canvas-wrapper, .canvas-container.arcade-crt-bezel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #020306;
+  border-radius: 14px;
+  border: 2px solid rgba(0, 255, 136, 0.3);
+  overflow: hidden;
+  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.95), 0 0 20px rgba(0, 255, 136, 0.2);
+}
+
+#game-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  outline: none;
+  background-color: #05070a;
+}
+
+.game-frame {
+  width: 100%;
+  height: 100%;
+  display: block;
+  outline: none;
+  border: none;
+  background-color: #05070a;
+}
+
+/* CRT Scanline Overlay Effect */
+.crt-scanline-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  opacity: 0.45;
+  z-index: 5;
+}
+
+/* Watermark */
+.canvas-watermark {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  background: rgba(6, 9, 16, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ecto-green);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Coin Door Decal */
+.arcade-cabinet-coin-door {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.coin-slot-housing {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 18px;
+  background: #070a12;
+  border: 1.5px solid rgba(245, 158, 11, 0.35);
+  border-radius: var(--radius-sm);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.coin-slot-light {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--pumpkin-amber);
+  box-shadow: 0 0 10px var(--pumpkin-amber);
+}
+
+.coin-slot-text {
+  font-family: var(--font-playful);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+}
+
+.coin-price {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--pumpkin-amber);
+}
+
+/* ==========================================================================
+   GRIMOIRE & TOMBSTONE INFORMATION DRAWER
+   ========================================================================== */
+.specs-drawer {
+  max-width: var(--theater-max);
+  margin: 32px auto 80px;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+}
+
+.grimoire-panel {
+  background: linear-gradient(180deg, #162035 0%, #101728 50%, #0a0e1a 100%);
+  border: 2px solid rgba(168, 85, 247, 0.28);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed rgba(168, 85, 247, 0.25);
+}
+
+.panel-title {
+  font-family: var(--font-playful);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel-header-icon {
+  font-size: 1.15rem;
+}
+
+.panel-meta {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ecto-green);
+}
+
+.grimoire-subtitle {
+  color: var(--spectral-lilac);
+}
+
+.grimoire-desc {
+  font-size: 0.94rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.grimoire-section-title {
+  font-family: var(--font-playful);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--spectral-lilac);
+  margin-bottom: 10px;
+}
+
+/* Engine Specs Rows */
+.engine-specs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.spec-row, .spec-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 14px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(168, 85, 247, 0.15);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+}
+
+.spec-key, .spec-label {
+  color: var(--text-ghost);
+  font-family: var(--font-playful);
+  font-weight: 500;
+  font-size: 0.82rem;
+}
+
+.spec-val {
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+/* Controls Guide Table */
+.controls-guide-grid, .controls-guide {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.control-item, .control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(168, 85, 247, 0.15);
+  border-radius: var(--radius-sm);
+}
+
+.control-desc, .control-action {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.kbd, .control-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--ecto-green);
+  background: #0f1627;
+  border: 1.5px solid var(--ecto-green);
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(0, 255, 136, 0.25);
+}
+
+/* Real-Time Astral Telemetry Monitor */
+.telemetry-live-box {
+  margin-top: 16px;
+  padding: 16px;
+  background: #070a14;
+  border: 1.5px solid rgba(0, 255, 136, 0.3);
+  border-radius: var(--radius-sm);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  text-align: center;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8), 0 0 16px rgba(0, 255, 136, 0.15);
+}
+
+.telemetry-val {
+  font-family: var(--font-mono);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--ecto-green);
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+}
+
+.telemetry-lbl {
+  font-family: var(--font-playful);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-ghost);
+  margin-top: 2px;
+}
+
+/* Fullscreen Mode Adjustments */
+#canvas-wrapper:fullscreen, .canvas-container:fullscreen {
+  border-radius: 0;
+  border: none;
+  max-width: 100vw;
+  max-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .specs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .portal-nav-container {
+    padding: 0 16px;
+    height: 64px;
+  }
+
+  .nav-stats {
+    display: none;
+  }
+
+  .hero-section {
+    padding: 36px 16px 20px;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+  }
+
+  .controls-bar {
+    padding: 0 16px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-tabs {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .search-wrapper {
+    min-width: 100%;
+  }
+
+  .games-section {
+    padding: 0 16px 60px;
+  }
+
+  #games-grid, .tombstone-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-stats-bar {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .footer-top {
+    flex-direction: column;
+  }
+
+  .hud-nav-container {
+    padding: 0 12px;
+  }
+
+  .hud-right .btn-label {
+    display: none;
+  }
+
+  .theater-container {
+    padding: 0 12px;
+  }
+
+  .arcade-cabinet-frame {
+    padding: 8px 8px 12px;
+  }
+
+  .specs-drawer {
+    padding: 0 12px;
+  }
+}

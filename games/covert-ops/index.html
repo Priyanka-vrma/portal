@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Covert Ops: Neon Sector // Haunted Arcade</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #020617; color: #f8fafc; font-family: 'Segoe UI', system-ui, sans-serif; cursor: crosshair; }
+    #game-container { position: relative; width: 100%; height: 100%; }
+    canvas { display: block; width: 100%; height: 100%; background: #050b18; }
+    .hud-overlay { position: absolute; top: 12px; left: 14px; right: 14px; display: flex; justify-content: space-between; pointer-events: none; z-index: 10; }
+    .hud-card { background: rgba(5, 11, 24, 0.85); border: 1px solid rgba(0, 255, 136, 0.35); border-radius: 8px; padding: 8px 14px; backdrop-filter: blur(8px); }
+    .hud-title { font-size: 0.72rem; color: #00ff88; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+    .hud-val { font-size: 1.4rem; font-weight: 800; font-family: monospace; color: #fff; }
+    .hud-sub { font-size: 0.75rem; color: #94a3b8; }
+    .ammo-pills { display: flex; gap: 3px; margin-top: 4px; }
+    .ammo-dot { width: 6px; height: 12px; background: #00ff88; border-radius: 2px; }
+    .ammo-dot.spent { background: rgba(255,255,255,0.15); }
+    .controls-hint { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); background: rgba(5, 11, 24, 0.85); border: 1px solid rgba(0, 255, 136, 0.3); border-radius: 20px; padding: 6px 16px; font-size: 0.76rem; color: #cbd5e1; pointer-events: none; }
+    .controls-hint kbd { background: #1e293b; border: 1px solid #334155; border-radius: 4px; padding: 1px 5px; color: #00ff88; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <canvas id="canvas" width="1280" height="720"></canvas>
+    <div class="hud-overlay">
+      <div class="hud-card">
+        <div class="hud-title">SILENCED WEAPON // AMMO</div>
+        <div class="hud-val" id="hud-ammo">15 / 15</div>
+        <div class="hud-sub" id="hud-suppressor">SUPPRESSOR: ATTACHED (SUBSONIC 9MM)</div>
+      </div>
+      <div class="hud-card" style="text-align: center;">
+        <div class="hud-title">STEALTH STATUS</div>
+        <div class="hud-val" id="hud-stealth" style="color:#00ff88;">GHOST [UNDETECTED]</div>
+        <div class="hud-sub" id="hud-guards">PATROLS: 6 ACTIVE</div>
+      </div>
+      <div class="hud-card" style="text-align: right;">
+        <div class="hud-title">TARGETS NEUTRALIZED</div>
+        <div class="hud-val" id="hud-kills" style="color:#a855f7;">0 / 6</div>
+        <div class="hud-sub">ALL SILENT TAKEDOWNS</div>
+      </div>
+    </div>
+    <div class="controls-hint">
+      <kbd>WASD</kbd> Tactical Move • <kbd>MOUSE</kbd> Aim • <kbd>LEFT-CLICK</kbd> Silenced Shot • <kbd>R</kbd> Reload • <kbd>SPACE</kbd> Combat Roll
+    </div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>

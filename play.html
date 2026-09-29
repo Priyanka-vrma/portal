@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haunted Arcade Cabinet // The Haunted Arcade</title>
+  <meta name="description" content="Immersive WebGL / Canvas Haunted Arcade cabinet runner. Play cursed physics-driven racing simulations and tactical spectral combat operations.">
+  <meta name="theme-color" content="#070a14">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M20,60 C20,25 80,25 80,60 C80,85 75,95 68,90 C60,85 55,95 48,90 C40,85 35,95 28,90 C22,85 20,75 20,60 Z' fill='%2300ff88'/><circle cx='38' cy='48' r='6' fill='%23070a14'/><circle cx='62' cy='48' r='6' fill='%23070a14'/><circle cx='40' cy='46' r='2' fill='%23ffffff'/><circle cx='64' cy='46' r='2' fill='%23ffffff'/><circle cx='32' cy='56' r='4' fill='%23ff70a6'/><circle cx='68' cy='56' r='4' fill='%23ff70a6'/><ellipse cx='50' cy='58' rx='4' ry='5' fill='%23070a14'/></svg>">
+
+  <!-- Google Fonts: Creepster, Fredoka, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Fredoka:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="play-body haunted-theme">
+  <!-- Ambient Top Glow & Noise -->
+  <div class="ambient-glow-top" aria-hidden="true"></div>
+  <div class="ambient-noise" aria-hidden="true"></div>
+  <div class="crypt-fog" aria-hidden="true"></div>
+
+  <!-- Dedicated Loading Overlay: Funny CSS-Animated Ghost Chasing Loading Bar! -->
+  <div id="loading-screen" class="loading-overlay" role="status" aria-live="polite">
+    <div class="loader-content">
+      <div class="loader-arcade-badge">THE HAUNTED ARCADE</div>
+      <h2 class="loader-curse-title">UNSEALING CURSED CARTRIDGE...</h2>
+      
+      <!-- Ghost Chase Animation Arena -->
+      <div class="loader-chase-arena">
+        <!-- Floating Target Soul Token / Spirit Orb -->
+        <div class="chase-target-soul" id="chase-target-soul">
+          <div class="soul-core"></div>
+          <div class="soul-aura"></div>
+          <span class="soul-icon">⚡</span>
+        </div>
+
+        <!-- Funny Cute Chasing Ghost with Frantic Eyes & Waving Tail -->
+        <div class="chase-ghost" id="chase-ghost">
+          <div class="ghost-bubble">Wait for meee! 👻</div>
+          <svg class="chase-ghost-svg" viewBox="0 0 100 120">
+            <!-- Ghost Body Sheet -->
+            <path class="ghost-chase-body" d="M 20 60 C 20 22, 80 22, 80 60 C 80 84, 76 102, 68 96 C 60 88, 56 104, 48 96 C 40 88, 36 104, 28 96 C 22 90, 20 80, 20 60 Z"/>
+            <!-- Wide Open Desperate Eyes -->
+            <ellipse cx="36" cy="46" rx="6" ry="8" class="chase-eye"/>
+            <ellipse cx="64" cy="46" rx="6" ry="8" class="chase-eye"/>
+            <!-- Pupils looking ahead frantically -->
+            <circle cx="39" cy="44" r="2.5" class="chase-pupil"/>
+            <circle cx="67" cy="44" r="2.5" class="chase-pupil"/>
+            <!-- Rosy Blushing Cheeks -->
+            <circle cx="28" cy="56" r="4.5" class="ghost-blush"/>
+            <circle cx="72" cy="56" r="4.5" class="ghost-blush"/>
+            <!-- Funny Open Mouth :O -->
+            <ellipse cx="50" cy="62" rx="5" ry="7" class="chase-mouth"/>
+            <!-- Flailing Ghost Arms -->
+            <path class="chase-arm-l" d="M 22 56 Q 8 50, 16 66"/>
+            <path class="chase-arm-r" d="M 78 56 Q 92 50, 84 66"/>
+          </svg>
+          <!-- Ectoplasm Sparkle Dust -->
+          <div class="chase-dust-trail">
+            <span class="dust-dot dot-1"></span>
+            <span class="dust-dot dot-2"></span>
+            <span class="dust-dot dot-3"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Animated Ectoplasmic Loading Bar -->
+      <div class="loading-bar-wrapper">
+        <div class="loading-bar-track">
+          <div class="loading-bar-fill" id="loading-bar-fill">
+            <div class="loading-bar-glow"></div>
+            <div class="loading-bar-bubbles"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Playful Spooky Status Messages -->
+      <div class="loading-status-text" id="loading-status-text">
+        Summoning poltergeist physics engine...
+      </div>
+      <div class="loading-status-sub">
+        Certified 100% Poltergeist-Free // 60 Spectral FPS
+      </div>
+    </div>
+  </div>
+
+  <!-- Spooky HUD Top Navigation Bar -->
+  <header class="hud-nav" role="navigation" aria-label="Haunted Arcade HUD Navigation">
+    <div class="hud-nav-container">
+      <div class="hud-left">
+        <!-- Back to Portal Link: Banish to Crypt -->
+        <a href="index.html" class="hud-back-btn back-btn" id="back-btn" data-action="back" title="Return to The Haunted Arcade Catalog">
+          <span class="hud-back-icon">⚰️</span>
+          <span>Banish to Crypt</span>
+        </a>
+
+        <!-- Game Title, Subtitle & Category Badge -->
+        <div class="hud-title-wrap">
+          <h1 id="game-title" class="hud-game-title">Summoning Curse...</h1>
+          <span id="game-category" class="category-pill badge-racing">SPECTRAL</span>
+        </div>
+      </div>
+
+      <!-- Action & Control Buttons Toolbar -->
+      <div class="hud-right">
+        <!-- Ecto-Sound Toggle Button -->
+        <button id="sound-btn" data-action="sound" class="hud-action-btn btn-sound" title="Toggle Ecto-Sound (M)" aria-label="Toggle Ecto-Sound">
+          <span class="icon">🔊</span>
+          <span class="btn-label">Ecto-Sound: On</span>
+        </button>
+
+        <!-- Pause Curse Button -->
+        <button id="pause-btn" data-action="pause" class="hud-action-btn btn-pause" title="Pause / Resume Curse (P)" aria-label="Pause Curse">
+          <span class="icon">⏸</span>
+          <span class="btn-label">Pause Curse</span>
+        </button>
+
+        <!-- Resurrect Session Button -->
+        <button id="reset-btn" data-action="reset" class="hud-action-btn btn-reset" title="Resurrect Session (R)" aria-label="Resurrect Session">
+          <span class="icon">🔄</span>
+          <span class="btn-label">Resurrect Session</span>
+        </button>
+
+        <!-- Ascend to Fullscreen Button -->
+        <button id="fullscreen-btn" data-action="fullscreen" class="hud-action-btn btn-fullscreen" title="Ascend to Fullscreen Mode (F)" aria-label="Ascend to Fullscreen">
+          <span class="icon">⛶</span>
+          <span class="btn-label">Ascend Fullscreen</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Haunted Arcade Cabinet Frame Wrapper -->
+    <div class="theater-container">
+      <div class="arcade-cabinet-frame">
+        <!-- Arcade Marquee Header -->
+        <div class="arcade-cabinet-marquee">
+          <div class="marquee-screw">★</div>
+          <div class="marquee-title-wrap">
+            <span class="marquee-skull">💀</span>
+            <span class="marquee-text">HAUNTED ARCADE // 1984 CURSED EDITION</span>
+            <span class="marquee-skull">💀</span>
+          </div>
+          <div class="marquee-screw">★</div>
+        </div>
+
+        <!-- Arcade Screen Bezel / Canvas Wrapper -->
+        <div id="canvas-wrapper" class="canvas-container arcade-crt-bezel">
+          <!-- Game iFrame Container (Standalone Game Runner) -->
+          <iframe id="game-frame" class="game-frame" src="about:blank" allow="autoplay; fullscreen" tabindex="0" title="Game Viewport"></iframe>
+          
+          <!-- Fallback Canvas Viewport -->
+          <canvas id="game-canvas" width="1280" height="720" tabindex="0" role="application" aria-label="Interactive Game Viewport" style="display:none;"></canvas>
+
+          <!-- CRT Scanline Glow Overlay -->
+          <div class="crt-scanline-overlay" aria-hidden="true"></div>
+
+          <!-- Status Watermark Top Right -->
+          <div class="canvas-watermark" aria-hidden="true">
+            <span class="nav-status-dot ecto-pulse"></span>
+            <span id="canvas-status-text">60 SPECTRAL FPS // ECTO-KERNEL RUNNING</span>
+          </div>
+        </div>
+
+        <!-- Arcade Coin Door Decal -->
+        <div class="arcade-cabinet-coin-door">
+          <div class="coin-slot-housing">
+            <span class="coin-slot-light"></span>
+            <span class="coin-slot-text">INSERT SOUL TO PLAY</span>
+            <span class="coin-price">25¢ SOULS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spooky Grimoire / Tombstone Information Drawer Below Viewport -->
+    <section class="specs-drawer" aria-label="Cursed Simulation Specifications and Controls">
+      <div class="specs-grid">
+        <!-- Left Panel: Cursed Tome Overview & Physics Kernel -->
+        <div class="spec-panel grimoire-panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <span class="panel-header-icon">📜</span>
+              <span>Cursed Tome: Simulation Overview</span>
+            </div>
+            <div class="panel-meta">
+              <span id="game-rating" class="game-rating">★ 4.9 Astral Grade</span>
+            </div>
+          </div>
+
+          <p id="game-subtitle" class="card-subtitle grimoire-subtitle" style="margin-bottom: 8px;"></p>
+          <p id="game-desc" class="game-full-desc grimoire-desc">
+            Summoning simulation parameters, ectoplasmic physics matrices, and Web Audio synthesizers...
+          </p>
+
+          <!-- Core Engine Architecture Badges -->
+          <div class="engine-specs-list" style="margin-bottom: 20px;">
+            <div class="spec-row">
+              <span class="spec-key">ECTO-RENDER PIPELINE</span>
+              <span class="spec-val">Hardware Accelerated Canvas 2D / 60 Spectral FPS</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">SPECTRAL AUDIO KERNEL</span>
+              <span class="spec-val">Procedural Web Audio API Oscillator Synthesis</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">CURSE INTEGRATION MATRIX</span>
+              <span class="spec-val">Semi-Implicit Euler Dynamic Integrator</span>
+            </div>
+          </div>
+
+          <!-- Dynamic Physics Specs List (Populated by play.js) -->
+          <h4 class="grimoire-section-title">
+            ⚰️ Physics Kernel Specifications
+          </h4>
+          <div id="physics-specs" class="physics-specs">
+            <!-- Dynamically populated by play.js -->
+          </div>
+
+          <!-- Key Simulation Mechanics -->
+          <h4 class="grimoire-section-title" style="margin-top: 20px;">
+            ✨ Key Simulation Mechanics
+          </h4>
+          <ul id="game-features" class="game-features" style="list-style:none; padding:0; margin:0;">
+            <!-- Dynamically populated by play.js -->
+          </ul>
+
+          <!-- Tags Container -->
+          <div id="game-tags" class="game-tags" style="margin-top: 18px;">
+            <!-- Dynamically populated by play.js -->
+          </div>
+        </div>
+
+        <!-- Right Panel: Astral Grimoire Controls & Real-Time Telemetry -->
+        <div class="spec-panel grimoire-panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <span class="panel-header-icon">🕹️</span>
+              <span>Astral Grimoire: Interactive Controls</span>
+            </div>
+            <div class="panel-meta" id="game-author">The Cryptmaster</div>
+          </div>
+
+          <!-- Controls Guide (Populated by play.js) -->
+          <div id="controls-guide" class="controls-guide-grid">
+            <!-- Dynamically populated by play.js -->
+          </div>
+
+          <!-- Real-Time Telemetry Monitor Box -->
+          <h4 class="grimoire-section-title" style="margin-top: 24px;">
+            🔮 Real-Time Astral Telemetry
+          </h4>
+          <div class="telemetry-live-box">
+            <div>
+              <div class="telemetry-val" id="telemetry-fps">60.0</div>
+              <div class="telemetry-lbl">Spectral FPS</div>
+            </div>
+            <div>
+              <div class="telemetry-val" id="telemetry-dt">16.6 ms</div>
+              <div class="telemetry-lbl">Spirit Delta</div>
+            </div>
+            <div>
+              <div class="telemetry-val" id="telemetry-draws">48</div>
+              <div class="telemetry-lbl">Astral Draws</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Loading Screen Dismiss & Telemetry Monitor Helper Script -->
+  <script>
+    (function () {
+      // 1. Loading Screen Animation Sequence
+      const loadingScreen = document.getElementById('loading-screen');
+      const statusText = document.getElementById('loading-status-text');
+      const messages = [
+        "Summoning poltergeist physics engine...",
+        "Trapping rogue spirits in WebGL canvas...",
+        "Calibrating ectoplasmic CRT scanlines...",
+        "Binding soul to arcade cabinet...",
+        "Curse Engine Online! Ready to Haunt!"
+      ];
+      let msgIndex = 0;
+      const msgInterval = setInterval(() => {
+        msgIndex = (msgIndex + 1) % messages.length;
+        if (statusText) statusText.textContent = messages[msgIndex];
+      }, 420);
+
+      // Smooth dismiss function exposed globally
+      window.dismissHauntedLoader = function () {
+        if (!loadingScreen) return;
+        clearInterval(msgInterval);
+        if (statusText) statusText.textContent = "Curse Engine Online! Ready to Haunt!";
+        setTimeout(() => {
+          loadingScreen.classList.add('fade-out');
+          setTimeout(() => {
+            loadingScreen.style.display = 'none';
+          }, 450);
+        }, 300);
+      };
+
+      // Auto-dismiss after 1.8s so user always sees the funny ghost chasing animation
+      window.addEventListener('load', () => {
+        setTimeout(window.dismissHauntedLoader, 1800);
+      });
+
+      // 2. Real-time Telemetry Monitor
+      let lastTime = performance.now();
+      let frames = 0;
+      let fpsTimer = performance.now();
+      const fpsEl = document.getElementById('telemetry-fps');
+      const dtEl = document.getElementById('telemetry-dt');
+      const drawsEl = document.getElementById('telemetry-draws');
+
+      function updateTelemetry(now) {
+        frames++;
+        const delta = now - lastTime;
+        lastTime = now;
+
+        if (now - fpsTimer >= 350) {
+          const fps = Math.round((frames * 1000) / (now - fpsTimer));
+          if (fpsEl) fpsEl.textContent = Math.min(fps, 60).toFixed(1);
+          if (dtEl) dtEl.textContent = delta.toFixed(1) + ' ms';
+          if (drawsEl) {
+            const engine = window.GhostPlayer && window.GhostPlayer.getEngine ? window.GhostPlayer.getEngine() : null;
+            const draws = engine && engine.particles ? (35 + engine.particles.length) : 48;
+            drawsEl.textContent = String(draws);
+          }
+          frames = 0;
+          fpsTimer = now;
+        }
+        requestAnimationFrame(updateTelemetry);
+      }
+      requestAnimationFrame(updateTelemetry);
+    })();
+  </script>
+
+  <!-- Load Prototype Engine and Player Runner Scripts -->
+  <script src="games/prototype-engine.js"></script>
+  <script src="play.js"></script>
+</body>
+</html>
